@@ -7,27 +7,27 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Home() {
-  const auth = useAppSelector((state) => state.auth);
-  const roleRouter = useRoleRouter();
-  const router = useRouter();
+	const auth = useAppSelector((state) => state.auth);
+	const roleRouter = useRoleRouter();
+	const router = useRouter();
 
-  useEffect(() => {
-    let redirectFunction;
-    if (auth.authState) {
-      redirectFunction = roleRouter.get(auth.role);
-    } else {
-      router.push("/login");
-    }
-    if (redirectFunction) {
-      redirectFunction();
-    } else {
-      router.push("/login");
-    }
-  }, []);
+	useEffect(() => {
+		let redirectFunction;
+		if (auth.authState) {
+			redirectFunction = roleRouter.get(auth.role);
+		} else {
+			router.push("/login");
+		}
+		if (redirectFunction) {
+			redirectFunction();
+		} else {
+			router.push("/login");
+		}
+	}, [auth.authState, auth.role, roleRouter, router]);
 
-  return (
-    <Box as={"main"} width={"100vw"} height={"100vh"} position={"relative"}>
-      <Loader />
-    </Box>
-  );
+	return (
+		<Box as={"main"} width={"100vw"} height={"100vh"} position={"relative"}>
+			<Loader />
+		</Box>
+	);
 }
