@@ -1,9 +1,0 @@
-APP_PORT=3000
-JWT_SECRET=KVV3qe*S%45hxmPga^U4P*M7h
-JWT_EXPIRATION=30d
-
-SALT_ROUNDS=15
-ADMIN_PASSWORD=@zD^Q9ERqL7L%875%WxLXnjJi
-
-DATABASE_URL=postgresql://postgres:password@localhost:5432/woundcare?schema=public
-DOMAIN_URL=http://localhost:8000
