@@ -12,6 +12,7 @@ const routes = {
   patientMessages: "/medical-chat",
   patientDischargeCongrats: "/dischargeCongrats",
   patientFrequentlyAskedQuestions: "/frequently-asked-questions",
+  patientEducation: "/education",
   //Loged routes
   notifications: "/notifications",
   //General routes
