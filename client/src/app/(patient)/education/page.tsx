@@ -14,7 +14,6 @@ import ImageModal from "./ImageModal";
 function Education() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  const [selectedTitle, setSelectedTitle] = useState("");
 
   const handleOpenModal = (imageSrc: string) => {
     setSelectedImage(imageSrc);
@@ -52,29 +51,29 @@ function Education() {
           align="center"
         >
           <Box>
-            <Text fontSize={14}>
+            <Text mb={6} color="#3B3B3B" fontSize={{sm: "14px", md: "18px"}}>
               Conozca más acerca de la heridas de díficil cicatrización por medio de infografías{" "}
             </Text>
-            <SimpleGrid columns={{ base: 2, md: 2, sm: 1 }} spacing={3}>
-              <Box p={2} onClick={() => handleOpenModal("/infographics/alimentacion.png")}>
+            <SimpleGrid my={2} columns={{ base: 2, sm: 1 }} spacing={4}>
+              <Box onClick={() => handleOpenModal("/infographics/alimentacion.png")}>
                 <InfographyBox
                   imageSrc="/infographics/alimentacion.png"
                   title="Alimentación que ayuda a la cicatrización"
                 />
               </Box>
-              <Box p={2} onClick={() => handleOpenModal("/infographics/factores.png")}>
+              <Box onClick={() => handleOpenModal("/infographics/factores.png")}>
                 <InfographyBox
                   imageSrc="/infographics/factores.png"
                   title="Factores que afectan a la cicatrización"
                 />
               </Box>
-              <Box p={2} onClick={() => handleOpenModal("/infographics/fases.png")}>
+              <Box onClick={() => handleOpenModal("/infographics/fases.png")}>
                 <InfographyBox
                   imageSrc="/infographics/fases.png"
                   title="Fases de la cicatrización de heridas"
                 />
               </Box>
-              <Box p={2} onClick={() => handleOpenModal("/infographics/tecnicas.png")}>
+              <Box onClick={() => handleOpenModal("/infographics/tecnicas.png")}>
                 <InfographyBox
                   imageSrc="/infographics/tecnicas.png"
                   title="Consejos para el cuidado adecuado de heridas"

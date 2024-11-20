@@ -20,6 +20,7 @@ function InfographyBox({
       display="flex"
       flexDir="column"
       alignItems="center"
+      borderRadius={5}
     >
       <Image
         src={imageSrc}
@@ -27,6 +28,7 @@ function InfographyBox({
         objectFit="cover"
         width="100%"
         height="100%"
+        borderRadius={5}
       />
     </Card>
     <Text m={2} fontWeight="bold" color="#3B3B3B" fontSize="16px">{title}</Text>
