@@ -12,8 +12,15 @@ import InfographyBox from "@/components/InfographyBox";
 import ImageModal from "./ImageModal";
 
 function Education() {
-  
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedTitle, setSelectedTitle] = useState("");
+
+  const handleOpenModal = (imageSrc: string) => {
+    setSelectedImage(imageSrc);
+    setIsOpen(true);
+  };
+
   const handleCloseModal = () => setIsOpen(false);
 
   return (
@@ -46,28 +53,28 @@ function Education() {
         >
           <Box>
             <Text fontSize={14}>
-              Conozca más acerca de la heridas de díficil cicatrización  por medio de infografías {" "}
+              Conozca más acerca de la heridas de díficil cicatrización por medio de infografías{" "}
             </Text>
             <SimpleGrid columns={{ base: 2, md: 2, sm: 1 }} spacing={3}>
-              <Box p={2}>
+              <Box p={2} onClick={() => handleOpenModal("/infographics/alimentacion.png")}>
                 <InfographyBox
                   imageSrc="/infographics/alimentacion.png"
                   title="Alimentación que ayuda a la cicatrización"
                 />
               </Box>
-              <Box p={2} onClick={() => setIsOpen(true)}>
+              <Box p={2} onClick={() => handleOpenModal("/infographics/factores.png")}>
                 <InfographyBox
                   imageSrc="/infographics/factores.png"
                   title="Factores que afectan a la cicatrización"
                 />
               </Box>
-              <Box p={2}>
+              <Box p={2} onClick={() => handleOpenModal("/infographics/fases.png")}>
                 <InfographyBox
                   imageSrc="/infographics/fases.png"
                   title="Fases de la cicatrización de heridas"
                 />
               </Box>
-              <Box p={2}>
+              <Box p={2} onClick={() => handleOpenModal("/infographics/tecnicas.png")}>
                 <InfographyBox
                   imageSrc="/infographics/tecnicas.png"
                   title="Consejos para el cuidado adecuado de heridas"
@@ -75,8 +82,7 @@ function Education() {
               </Box>
             </SimpleGrid>
 
-            <ImageModal isOpen={isOpen} onClose={handleCloseModal} src="/infographics/factores.png" />
-
+            <ImageModal isOpen={isOpen} onClose={handleCloseModal} src={selectedImage} />
           </Box>
         </Flex>
       </Box>
