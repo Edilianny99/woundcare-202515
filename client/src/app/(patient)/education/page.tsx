@@ -1,23 +1,15 @@
 import {
-  Accordion,
   Box,
-  Button,
   Flex,
   Heading,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   SimpleGrid,
   Text
 } from "@chakra-ui/react";
 import React from "react";
 import Arrow from "@/components/Arrow";
 import InfographyBox from "@/components/InfographyBox";
-import imageModal from "../imageModal";
+import ImageModal from "./ImageModal";
+
 
 function Education() {
   return (
@@ -79,7 +71,7 @@ function Education() {
               </Box>
             </SimpleGrid>
 
-            <imageModal isOpen={true} src={"/infographics/fases.png"}/>
+            <ImageModal src="/infographics/fases.png" width={500} height={500}/>
 
           </Box>
         </Flex>

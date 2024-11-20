@@ -1,9 +1,9 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 import Image from 'next/image';
 
-function imageModal( src: string, isOpen: boolean ) {
+function ImageModal( src: string ) {
   return (
-    <Modal isOpen={isOpen}>
+    <Modal isOpen={true}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Modal Title</ModalHeader>
@@ -16,4 +16,4 @@ function imageModal( src: string, isOpen: boolean ) {
   );
 }
 
-export default imageModal;
+export default ImageModal;
