@@ -75,7 +75,7 @@ function Education() {
               </Box>
             </SimpleGrid>
 
-            <ImageModal isOpen={isOpen} onClose={handleCloseModal} src="/infographics/fases.png" />
+            <ImageModal isOpen={isOpen} onClose={handleCloseModal} src="/infographics/factores.png" />
 
           </Box>
         </Flex>

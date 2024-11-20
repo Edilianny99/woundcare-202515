@@ -12,6 +12,7 @@ function ImageModal({ isOpen, onClose, src }: ImageModalProps) {
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent width={"90%"}>
+            <ModalCloseButton/>
                 <Box
                     width={"90%"}
                     height={"4px"}
