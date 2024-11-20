@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Flex,
@@ -5,13 +6,16 @@ import {
   SimpleGrid,
   Text
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import Arrow from "@/components/Arrow";
 import InfographyBox from "@/components/InfographyBox";
 import ImageModal from "./ImageModal";
 
-
 function Education() {
+  
+  const [isOpen, setIsOpen] = useState(false);
+  const handleCloseModal = () => setIsOpen(false);
+
   return (
     <>
       <Box as="main" flex={1}>
@@ -51,7 +55,7 @@ function Education() {
                   title="Alimentación que ayuda a la cicatrización"
                 />
               </Box>
-              <Box p={2}>
+              <Box p={2} onClick={() => setIsOpen(true)}>
                 <InfographyBox
                   imageSrc="/infographics/factores.png"
                   title="Factores que afectan a la cicatrización"
@@ -71,7 +75,7 @@ function Education() {
               </Box>
             </SimpleGrid>
 
-            <ImageModal src="/infographics/fases.png" width={500} height={500}/>
+            <ImageModal isOpen={isOpen} onClose={handleCloseModal} src="/infographics/fases.png" />
 
           </Box>
         </Flex>

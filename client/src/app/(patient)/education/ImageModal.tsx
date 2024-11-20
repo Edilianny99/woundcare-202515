@@ -1,19 +1,28 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Box, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 
-function ImageModal( src: string ) {
-  return (
-    <Modal isOpen={true}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Image src={src} alt="Infographic" width={500} height={500} />
-        </ModalBody>
-      </ModalContent>
-    </Modal>
-  );
+interface ImageModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    src: string;
+}
+
+function ImageModal({ isOpen, onClose, src }: ImageModalProps) {
+    return (
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent width={"90%"}>
+                <Box
+                    width={"90%"}
+                    height={"4px"}
+                    alignSelf={"center"}
+                />
+                <ModalBody>
+                    <Image width={800} height={800} src={src} alt="Infographic" />
+                </ModalBody>
+            </ModalContent>
+        </Modal>
+    );
 }
 
 export default ImageModal;
