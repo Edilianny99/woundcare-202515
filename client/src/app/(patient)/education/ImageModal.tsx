@@ -19,7 +19,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, src}) => {
                     alignSelf={"center"}
                 />
                 <ModalBody>
-                    <Image width={800} height={800} src={src} alt="Infographic" />
+                    <Image width={600} height={800} src={src} alt="Infographic" />
                 </ModalBody>
             </ModalContent>
         </Modal>

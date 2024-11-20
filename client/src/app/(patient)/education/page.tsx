@@ -54,7 +54,7 @@ function Education() {
             <Text mb={6} color="#3B3B3B" fontSize={{sm: "14px", md: "18px"}}>
               Conozca más acerca de la heridas de díficil cicatrización por medio de infografías{" "}
             </Text>
-            <SimpleGrid my={2} columns={{ base: 2, sm: 1 }} spacing={4}>
+            <SimpleGrid my={2} columns={{ base: 2, md: 2, sm: 1 }} spacing={4}>
               <Box onClick={() => handleOpenModal("/infographics/alimentacion.png")}>
                 <InfographyBox
                   imageSrc="/infographics/alimentacion.png"
