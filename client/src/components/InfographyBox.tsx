@@ -28,14 +28,6 @@ function InfographyBox({
         width="100%"
         height="100%"
       />
-      <CardBody
-        textAlign={"center"}
-        fontWeight={"bold"}
-        color={"#4F1964"}
-        fontSize={{ base: "large", sm: "larger" }}
-        whiteSpace={"normal"}
-      >
-      </CardBody>
     </Card>
     <Text m={2} fontWeight="bold" color="#3B3B3B" fontSize="16px">{title}</Text>
 </>
