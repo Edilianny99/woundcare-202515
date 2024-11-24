@@ -1,3 +1,3 @@
-import { Message as PrismaMessage } from "@prisma/client"
+import { Message as PrismaMessage } from '@prisma/client';
 
-export type Message = PrismaMessage
+export type Message = PrismaMessage;

@@ -1,4 +1,4 @@
-import {  Genre, Role } from '@prisma/client';
+import { Genre, Role } from '@prisma/client';
 
 export type Conversation = {
   id: number;

@@ -103,16 +103,16 @@ model Patient {
 }
 
 model MedicalFile {
-  id                Int            @id @default(autoincrement())
+  id                Int              @id @default(autoincrement())
   patientId         String
-  patient           Patient        @relation(fields: [patientId], references: [nationalId])
+  patient           Patient          @relation(fields: [patientId], references: [nationalId])
   doctorId          String
-  doctor            Doctor         @relation(fields: [doctorId], references: [nationalId])
+  doctor            Doctor           @relation(fields: [doctorId], references: [nationalId])
   nurseId           String
-  nurse             Nurse          @relation(fields: [nurseId], references: [nationalId])
-  date              DateTime       @db.Date
+  nurse             Nurse            @relation(fields: [nurseId], references: [nationalId])
+  date              DateTime         @db.Date
   description       String
-  dischargeDate     DateTime?      @db.Date
+  dischargeDate     DateTime?        @db.Date
   physicalExam      String[]
   medicalHistory    String[]
   previousTreatment String[]
@@ -120,6 +120,7 @@ model MedicalFile {
   carePlan          String[]
   Conversation      Conversation[]
   Prescription      Prescription[]
+  WoundEvolution    WoundEvolution[]
 
   @@unique([patientId, date])
 }
@@ -180,4 +181,12 @@ model Prescription {
   nextMedicine        DateTime    @default(now())
 
   @@unique(name: "medical_file_medicine_unique", fields: [medicalFileId, medicineName])
+}
+
+model WoundEvolution {
+  id            Int         @id @default(autoincrement())
+  medicalFileId Int
+  MedicalFile   MedicalFile @relation(fields: [medicalFileId], references: [id])
+  questionaire  Json
+  date          DateTime    @default(now())
 }
