@@ -24,7 +24,7 @@ function MedicalFilePatient() {
   useEffect(() => {
     const fetchMedicalFile = async () => {
       if (id !== null) {
-        const response = await getPatientMedicalFile(id); 
+        const response = await getPatientMedicalFile(id);
         setMedicalFile(response);
         setIsLoading(false);
       }
@@ -35,13 +35,13 @@ function MedicalFilePatient() {
   useEffect(() => {
     const fetchPatientInfo = async () => {
       if (id !== null) {
-        const response = await getPatientInfo(id); 
+        const response = await getPatientInfo(id);
         setPatientInfo(response);
       }
     };
     fetchPatientInfo();
   }
-  , []);
+    , []);
 
   useEffect(() => {
     const fetchNurse = async () => {
@@ -108,38 +108,43 @@ function MedicalFilePatient() {
             Historia Clínica
           </Heading>
           <Text color="#4F1964" marginTop={"4px"}>
-            Nº Historia: {medicalFile?.id}
+            {/* Nº Historia: {medicalFile?.id} */}
           </Text>
           <Flex direction={"row"} justifyContent={"flex-end"} mt={"10px"} mb={"5px"}>
+            <Button borderRadius="15px"
+              color="white" bg={"#AD8EB1"} fontSize={"14px"} mr={"10px"} boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" onClick={handleOpenModalM}>+<Image
+                src="/medicine/capsule.png"
+                alt="menu"
+                width={20}
+                height={20}
+                style={{ cursor: "pointer" }}
+              /></Button>
+            <Button borderRadius="15px"
+              color="white" bg={"#AD8EB1"} fontSize={"14px"} boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" onClick={handleOpenModal}>+ Asignar cambio de vendaje</Button>
+          </Flex>
           <Button borderRadius="15px"
-          color="white" bg={"#AD8EB1"} fontSize={"14px"} mr={"10px"} boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" onClick={handleOpenModalM}>+<Image
-          src="/medicine/capsule.png"
-          alt="menu"
-          width={20}
-          height={20}
-          style={{ cursor: "pointer" }}
-        /></Button>
-          <Button borderRadius="15px"
-          color="white" bg={"#AD8EB1"} fontSize={"14px"} boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" onClick={handleOpenModal}>+ Asignar cambio de vendaje</Button>
-          </Flex>  
+            color="white" bg={"#AD8EB1"} fontSize={"14px"} boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" onClick={handleOpenModal}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#ffffff" fill-rule="evenodd" d="M5 16.25a.75.75 0 0 1 .75.75v2c0 .138.112.25.25.25h12a.25.25 0 0 0 .25-.25v-2a.75.75 0 0 1 1.5 0v2A1.75 1.75 0 0 1 18 20.75H6A1.75 1.75 0 0 1 4.25 19v-2a.75.75 0 0 1 .75-.75" clip-rule="evenodd"/><path fill="#ffffff" d="M10.738 3.75a.99.99 0 0 0-.988.906a37 37 0 0 0-.082 5.27q-.37.02-.74.047l-1.49.109a.76.76 0 0 0-.585 1.167a15.6 15.6 0 0 0 4.032 4.258l.597.429a.89.89 0 0 0 1.036 0l.597-.429a15.6 15.6 0 0 0 4.032-4.258a.76.76 0 0 0-.585-1.167l-1.49-.109a42 42 0 0 0-.74-.047a37 37 0 0 0-.081-5.27a.99.99 0 0 0-.989-.906z"/></svg>
+            Descargar historia completa
+          </Button>
         </Flex>
         <Flex w="100vw" h="13vh" align="center" pr="6vw" pl="6vw">
           {patientInfo?.genre === 'FEMALE' ? (
             <Image
-            src="/profile/female_user.png"
-            alt="female_user"
-            width={80}
-            height={80}
-          />
-            ) : (
-              <Image
-            src="/profile/male_user.png"
-            alt="male_user"
-            width={80}
-            height={80}
-          />
-            )}
-          
+              src="/profile/female_user.png"
+              alt="female_user"
+              width={80}
+              height={80}
+            />
+          ) : (
+            <Image
+              src="/profile/male_user.png"
+              alt="male_user"
+              width={80}
+              height={80}
+            />
+          )}
+
           <Heading
             as="h2"
             fontSize="x-large"
@@ -189,14 +194,14 @@ function MedicalFilePatient() {
             Antecedentes médicos:
           </Text>
           {patientInfo?.medicalRecords ? (
-  patientInfo.medicalRecords.length > 0 ? (
-    patientInfo.medicalRecords.map((record, index) => <li key={index}>{record}</li>)
-  ) : (
-    <p>No hay antecedentes médicos.</p>
-  )
-) : (
-  <p>No hay antecedentes médicos.</p>
-)}
+            patientInfo.medicalRecords.length > 0 ? (
+              patientInfo.medicalRecords.map((record, index) => <li key={index}>{record}</li>)
+            ) : (
+              <p>No hay antecedentes médicos.</p>
+            )
+          ) : (
+            <p>No hay antecedentes médicos.</p>
+          )}
           <Text
             fontWeight={"bold"}
             fontSize={"18px"}
@@ -222,7 +227,7 @@ function MedicalFilePatient() {
           </Text>
           {medicalFile?.medicalHistory ? (
             medicalFile.medicalHistory.length > 0 ? (
-              medicalFile.medicalHistory.map((record, index) => <li key={index} style={{marginTop: "5px"}}>{record}</li>)
+              medicalFile.medicalHistory.map((record, index) => <li key={index} style={{ marginTop: "5px" }}>{record}</li>)
             ) : (
               <p>No hay historia de enfermedad actual.</p>
             )
@@ -300,16 +305,16 @@ function MedicalFilePatient() {
           </Text>
           {medicalFile?.carePlan ? (
             medicalFile.carePlan.length > 0 ? (
-              medicalFile.carePlan.map((record, index) => <li key={index} style={{marginTop: "5px"}}>{record}</li>)
+              medicalFile.carePlan.map((record, index) => <li key={index} style={{ marginTop: "5px" }}>{record}</li>)
             ) : (
               <p>No hay plan de cuidados.</p>
             )
           ) : (
             <p>No hay plan de cuidados.</p>
           )}
-          <AlertDialogDischarge idPatient={patientInfo?.nationalId}/>
-          <ModalBandageChange isOpen={isOpen} onClose={handleCloseModal} idNurse={nurse?.nationalId} idPatient={patientInfo?.nationalId}/>
-          <ModalMedicine isOpen={isOpenM} onClose={handleCloseModalM} idMedicalFile={medicalFile?.id}/>
+          <AlertDialogDischarge idPatient={patientInfo?.nationalId} />
+          <ModalBandageChange isOpen={isOpen} onClose={handleCloseModal} idNurse={nurse?.nationalId} idPatient={patientInfo?.nationalId} />
+          <ModalMedicine isOpen={isOpenM} onClose={handleCloseModalM} idMedicalFile={medicalFile?.id} />
         </Flex>
       </Box>
     </>
