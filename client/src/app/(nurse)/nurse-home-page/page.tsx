@@ -4,10 +4,18 @@ import MenuOptionCard from "@/components/MenuOptionCard";
 import { Nurse } from "@/interfaces/nurse/nurse.interface";
 import { getMe } from "@/services/nurse/nurse.service";
 import routes from "@/utils/routes";
-import { Box, Flex, Heading, Divider } from "@chakra-ui/react";
+import { Box, Flex, Heading, Divider, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import NotificationCard from "@/components/NotificationCard";
+import { Notification } from "@/interfaces/notification/notification.interface";
+import {
+  getMyNotifications,
+  readNotification,
+} from "@/services/notifications/notifications.service";
+import Link from "next/link";
+
 
 function NurseHomePage() {
   const [nurse, setNurse] = useState<Nurse | null>(null);
@@ -27,6 +35,35 @@ function NurseHomePage() {
     fetchNurse();
   }, []);
 
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+
+  useEffect(() => {
+    const fetchMyNotifications = async () => {
+      try {
+        const notifications = await getMyNotifications(1, 3);
+        setNotifications(notifications.items);
+      } catch (error) {
+        toast.error("No se pudieron cargar las notificaciones");
+      }
+    };
+    fetchMyNotifications();
+  }, []);
+
+  const readOneNotification = async (notificationId: number) => {
+    try {
+      const notification = await readNotification(notificationId);
+      setNotifications((prevNotifications) =>
+        prevNotifications.map((prevNotification) =>
+          prevNotification.id === notification.id
+            ? notification
+            : prevNotification
+        )
+      );
+    } catch (error) {
+      toast.error("No se pudo marcar la notificación como leída");
+    }
+  };
+
   return isLoading ? (
     <Box width={"100vw"} flexGrow={1} position={"relative"}>
       <Loader />
@@ -43,45 +80,81 @@ function NurseHomePage() {
         paddingX={4}
         gap={4}
       >
-        <Box
-          as="section"
-          width={"100%"}
-          minHeight={"100px"}
-          maxWidth={"350px"}
-          display={"flex"}
-          alignItems={"center"}
-          gap={2}
-          textColor={"#4F1964"}
-        >
-          {nurse?.genre === "FEMALE" ? (<><Image
-            src={"/nurseHomePage/nursePhoto.png"}
-            width={90}
-            height={90}
-            alt="nurse"
-          />
-          <Flex flexDirection={"column"} gap={2}>
-            <Heading as={"h2"} fontSize={24}>
-              Enfermera {nurse?.user.fullname}
-            </Heading>
-            <Heading as={"h1"} fontSize={16}>
-              Centro Médico: {nurse?.medicalCenter}
-            </Heading>
-          </Flex></>) :(<><Image
-            src={"/nurseHomePage/male_nurse.png"}
-            width={90}
-            height={90}
-            alt="nurse"
-          />
-          <Flex flexDirection={"column"} gap={2}>
-            <Heading as={"h2"} fontSize={24}>
-              Enfermero {nurse?.user.fullname}
-            </Heading>
-            <Heading as={"h1"} fontSize={16}>
-              Centro Médico: {nurse?.medicalCenter}
-            </Heading>
-          </Flex></>)}
+        <Box as="main" flexGrow={1}>
+          <Box
+            as="article"
+            height={"100%"}
+            width={"100vw"}
+            display={"flex"}
+            flexDirection={"column"}
+            alignItems={"center"}
+            paddingX={4}
+            gap={4}
+          >
+            <Box
+              as="section"
+              width={"100%"}
+              maxWidth={"350px"}
+              display={"flex"}
+              flexDirection={"column"}
+              alignItems={"center"}
+              gap={2}
+              padding={4}
+              backgroundColor={"rgba(97, 48, 116, 0.5)"}
+              borderRadius={10}
+            >
+              <Heading
+                as={"h2"}
+                alignSelf={"flex-start"}
+                fontSize={20}
+                color={"white"}
+              >
+                Notificaciones
+              </Heading>
+              {notifications.map((notification) => (
+                <Box
+                  key={notification.id}
+                  onClick={() => {
+                    if (!notification.read) readOneNotification(notification.id);
+                  }}
+                >
+                  <NotificationCard notification={notification} />
+                </Box>
+              ))}
+              {!(notifications.length > 0) && (
+                <Box
+                  height={"100%"}
+                  width={"100%"}
+                  backgroundColor={"#F9EDEF"}
+                  paddingX={2}
+                  paddingY={2}
+                  borderRadius={5}
+                  display="flex"
+                  flexDir="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  _hover={{
+                    boxShadow: "0 0 10px 2px #4F1964",
+                    transition: "box-shadow 0.3s",
+                  }}
+                >
+                  <Text textColor={"grey"}>No hay notificaciones</Text>
+                </Box>
+              )}
+              <Link
+                href={routes.notifications}
+                style={{
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: "white",
+                  alignSelf: "center",
+                }}
+              >
+                Ver más
+              </Link>
+            </Box>
+          </Box>
         </Box>
-        <Box w="100%" h="2px" bg="#AD8EB1" marginBottom={6} />
         <Box
           as="section"
           width={"100%"}
