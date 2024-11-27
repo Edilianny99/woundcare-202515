@@ -15,7 +15,6 @@ import {
 } from "@/services/notifications/notifications.service";
 import Link from "next/link";
 
-
 function NurseHomePage() {
   const [nurse, setNurse] = useState<Nurse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
