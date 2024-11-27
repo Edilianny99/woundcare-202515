@@ -4,8 +4,7 @@ import MenuOptionCard from "@/components/MenuOptionCard";
 import { Nurse } from "@/interfaces/nurse/nurse.interface";
 import { getMe } from "@/services/nurse/nurse.service";
 import routes from "@/utils/routes";
-import { Box, Flex, Heading, Divider, Text } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import NotificationCard from "@/components/NotificationCard";
@@ -142,7 +141,7 @@ function NurseHomePage() {
                 </Box>
               )}
               <Link
-                href={routes.notifications}
+                href={routes.nurseNotifications}
                 style={{
                   fontSize: 14,
                   fontWeight: 500,

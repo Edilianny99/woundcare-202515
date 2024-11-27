@@ -15,6 +15,7 @@ const routes = {
   patientEducation: "/education",
   //Loged routes
   notifications: "/notifications",
+  nurseNotifications: "/nurse-notifications",
   //General routes
   termsAndConditions: "/terms-&-conditions",
   //Admin routes
