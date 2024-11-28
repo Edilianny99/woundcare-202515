@@ -27,13 +27,13 @@ export class WoundEvolutionService {
       },
     });
 
+    await this.notifyBandageChange(createWoundEvolutionDto.questionaire, createWoundEvolutionDto.medicalFileId);
+
     if (await this.isNotificationNecessary(createWoundEvolutionDto.questionaire)) {
       const medicalFile = await this.prismaService.medicalFile.findUnique({
         where: { id: createWoundEvolutionDto.medicalFileId },
         include: { patient: { include: { user: true } } }
       });
-
-    console.log(medicalFile);
 
       if (!medicalFile) {
         throw new NotFoundError('Medical file not found');
@@ -82,35 +82,34 @@ export class WoundEvolutionService {
 
   async isNotificationNecessary(cuestionario: QuestionaireAnswer[]) {
     let count = 0;
-    const seed = cuestionario.map((c) => c.answer);
-    seed.forEach((s) => {
-      if (s === 'yes') {
+
+    cuestionario.forEach((c) => {
+      if (c.answer === 'yes' && c.key !== 'has-clean-bandages-on') {
         count++;
       }
     });
+
     return count >= 3;
   }
 
-  async notifyBandageChange(questionaire: QuestionaireAnswer[]) {
-    const medicalFileId = questionaire.find((q) => q.key === 'has-clean-bandages-on');
-    if (!medicalFileId) {
-      throw new NotFoundError('Medical file id not found');
+  async notifyBandageChange(questionaire: QuestionaireAnswer[], medicalFileId: number) {
+    const bandageChangeQuestion = questionaire.find((q) => q.key === 'has-clean-bandages-on');
+
+    if (bandageChangeQuestion?.answer === 'no') {
+      const medicalFile = await this.prismaService.medicalFile.findUnique({
+        where: { id: medicalFileId },
+        include: { patient: { include: { user: true } } },
+      });
+
+      if (!medicalFile) {
+        throw new NotFoundError('Medical file not found');
+      }
+
+      await this.notificationService.create({
+        message: `El paciente ${medicalFile.patient.user.fullname} requiere cambio de vendaje`,
+        userId: medicalFile?.nurseId,
+        type: 'BANDAGE_CHANGE',
+      });
     }
-
-    const medicalFile = await this.prismaService.medicalFile.findUnique({
-      where: { id: parseInt(medicalFileId.answer) },
-      include: { patient: { include: { user: true } } },
-    });
-
-    if (!medicalFile) {
-      throw new NotFoundError('Medical file not found');
-    }
-
-    await this.notificationService.create({
-      message: `El paciente ${medicalFile.patient.user.fullname} requiere cambio de vendaje`,
-      userId: medicalFile?.nurseId,
-      type: 'BANDAGE_CHANGE',
-    });
-    
   }
 }
