@@ -9,3 +9,8 @@ export const QuestionaireKeys = {
   'has-clean-bandages-on': 'Esta usando vendajes limpios',
   'daily-description': 'Cuidado diario realizado',
 };
+
+export type QuestionaireAnswer = {
+  key: string;
+  answer: string;
+};

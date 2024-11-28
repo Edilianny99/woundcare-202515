@@ -7,7 +7,7 @@
 */
 -- AlterEnum
 BEGIN;
-CREATE TYPE "NotificationType_new" AS ENUM ('BANDAGE_CHANGE', 'MEDICATION_TIME', 'MONITORING_SIGNS_AND_SYMPTOMS', 'DISCHARGE', 'POST_BANDAGE_CHANGE');
+CREATE TYPE "NotificationType_new" AS ENUM ('BANDAGE_CHANGE', 'MEDICATION_TIME', 'MONITORING_SIGNS_AND_SYMPTOMS', 'DISCHARGE', 'POST_BANDAGE_CHANGE','ALERT');
 ALTER TABLE "Notifications" ALTER COLUMN "type" TYPE "NotificationType_new" USING ("type"::text::"NotificationType_new");
 ALTER TYPE "NotificationType" RENAME TO "NotificationType_old";
 ALTER TYPE "NotificationType_new" RENAME TO "NotificationType";

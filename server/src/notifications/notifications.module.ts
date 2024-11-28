@@ -8,5 +8,6 @@ import { PrescriptionModule } from 'src/prescription/prescription.module';
   imports: [PrismaModule, PrescriptionModule],
   controllers: [NotificationsController],
   providers: [NotificationsService],
+  exports: [NotificationsService],
 })
 export class NotificationsModule {}

@@ -47,6 +47,7 @@ enum NotificationType {
   MONITORING_SIGNS_AND_SYMPTOMS
   DISCHARGE
   POST_BANDAGE_CHANGE
+  ALERT
 }
 
 model User {

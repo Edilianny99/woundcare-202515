@@ -9,10 +9,12 @@ import {
   NotFoundError,
   UnexpectedError,
 } from 'src/common/errors/service.error';
+import { QuestionaireAnswer } from './wound-evolution-questionaire';
+import { NotificationsService } from 'src/notifications/notifications.service';
 
 @Injectable()
 export class WoundEvolutionService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService, private readonly notificationService: NotificationsService) { }
 
   async create(createWoundEvolutionDto: CreateWoundEvolutionDto) {
     const questionaireDto =
@@ -24,6 +26,25 @@ export class WoundEvolutionService {
         questionaire: questionaireDto,
       },
     });
+
+    if (await this.isNotificationNecessary(createWoundEvolutionDto.questionaire)) {
+      const medicalFile = await this.prismaService.medicalFile.findUnique({
+        where: { id: createWoundEvolutionDto.medicalFileId },
+        include: { patient: { include: { user: true } } }
+      });
+
+    console.log(medicalFile);
+
+      if (!medicalFile) {
+        throw new NotFoundError('Medical file not found');
+      }
+
+      await this.notificationService.create({
+        message: `El paciente ${medicalFile.patient.user.fullname} requiere atención`,
+        userId: medicalFile?.nurseId,
+        type: 'ALERT',
+      });
+    }
 
     return result;
   }
@@ -57,5 +78,39 @@ export class WoundEvolutionService {
         cause: error,
       });
     }
+  }
+
+  async isNotificationNecessary(cuestionario: QuestionaireAnswer[]) {
+    let count = 0;
+    const seed = cuestionario.map((c) => c.answer);
+    seed.forEach((s) => {
+      if (s === 'yes') {
+        count++;
+      }
+    });
+    return count >= 3;
+  }
+
+  async notifyBandageChange(questionaire: QuestionaireAnswer[]) {
+    const medicalFileId = questionaire.find((q) => q.key === 'has-clean-bandages-on');
+    if (!medicalFileId) {
+      throw new NotFoundError('Medical file id not found');
+    }
+
+    const medicalFile = await this.prismaService.medicalFile.findUnique({
+      where: { id: parseInt(medicalFileId.answer) },
+      include: { patient: { include: { user: true } } },
+    });
+
+    if (!medicalFile) {
+      throw new NotFoundError('Medical file not found');
+    }
+
+    await this.notificationService.create({
+      message: `El paciente ${medicalFile.patient.user.fullname} requiere cambio de vendaje`,
+      userId: medicalFile?.nurseId,
+      type: 'BANDAGE_CHANGE',
+    });
+    
   }
 }

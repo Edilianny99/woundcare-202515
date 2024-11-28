@@ -3,7 +3,8 @@ type NotificationType =
   | "POST_BANDAGE_CHANGE"
   | "MEDICATION_TIME"
   | "MONITORING_SIGNS_AND_SYMPTOMS"
-  | "DISCHARGE";
+  | "DISCHARGE"
+    "ALERT";
 
 export interface Notification {
   id: number;
