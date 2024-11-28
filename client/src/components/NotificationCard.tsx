@@ -33,6 +33,7 @@ function NotificationCard({ notification }: { notification: Notification }) {
     "POST_BANDAGE_CHANGE",
     "MONITORING_SIGNS_AND_SYMPTOMS",
     "DISCHARGE",
+    "ALERT",
   ].includes(notification.type) ? (
     <Link style={{ maxHeight: "85px", width: "100%" }} href={link}>
       <Card

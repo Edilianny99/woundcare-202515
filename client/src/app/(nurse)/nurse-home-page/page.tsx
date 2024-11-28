@@ -78,80 +78,67 @@ function NurseHomePage() {
         paddingX={4}
         gap={4}
       >
-        <Box as="main" flexGrow={1}>
-          <Box
-            as="article"
-            height={"100%"}
-            width={"100vw"}
-            display={"flex"}
-            flexDirection={"column"}
-            alignItems={"center"}
-            paddingX={4}
-            gap={4}
+        <Box
+          as="section"
+          width={"100%"}
+          maxWidth={"350px"}
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
+          gap={2}
+          padding={4}
+          backgroundColor={"rgba(97, 48, 116, 0.5)"}
+          borderRadius={10}
+        >
+          <Heading
+            as={"h2"}
+            alignSelf={"flex-start"}
+            fontSize={20}
+            color={"white"}
           >
+            Notificaciones
+          </Heading>
+          {notifications.map((notification) => (
             <Box
-              as="section"
-              width={"100%"}
-              maxWidth={"350px"}
-              display={"flex"}
-              flexDirection={"column"}
-              alignItems={"center"}
-              gap={2}
-              padding={4}
-              backgroundColor={"rgba(97, 48, 116, 0.5)"}
-              borderRadius={10}
+              key={notification.id}
+              onClick={() => {
+                if (!notification.read) readOneNotification(notification.id);
+              }}
             >
-              <Heading
-                as={"h2"}
-                alignSelf={"flex-start"}
-                fontSize={20}
-                color={"white"}
-              >
-                Notificaciones
-              </Heading>
-              {notifications.map((notification) => (
-                <Box
-                  key={notification.id}
-                  onClick={() => {
-                    if (!notification.read) readOneNotification(notification.id);
-                  }}
-                >
-                  <NotificationCard notification={notification} />
-                </Box>
-              ))}
-              {!(notifications.length > 0) && (
-                <Box
-                  height={"100%"}
-                  width={"100%"}
-                  backgroundColor={"#F9EDEF"}
-                  paddingX={2}
-                  paddingY={2}
-                  borderRadius={5}
-                  display="flex"
-                  flexDir="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  _hover={{
-                    boxShadow: "0 0 10px 2px #4F1964",
-                    transition: "box-shadow 0.3s",
-                  }}
-                >
-                  <Text textColor={"grey"}>No hay notificaciones</Text>
-                </Box>
-              )}
-              <Link
-                href={routes.nurseNotifications}
-                style={{
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: "white",
-                  alignSelf: "center",
-                }}
-              >
-                Ver más
-              </Link>
+              <NotificationCard notification={notification} />
             </Box>
-          </Box>
+          ))}
+          {!(notifications.length > 0) && (
+            <Box
+              height={"100%"}
+              width={"100%"}
+              backgroundColor={"#F9EDEF"}
+              paddingX={2}
+              paddingY={2}
+              borderRadius={5}
+              display="flex"
+              flexDir="row"
+              alignItems="center"
+              justifyContent="center"
+              _hover={{
+                boxShadow: "0 0 10px 2px #4F1964",
+                transition: "box-shadow 0.3s",
+              }}
+            >
+              <Text textColor={"grey"}>No hay notificaciones</Text>
+            </Box>
+          )}
+          <Link
+            href={routes.nurseNotifications}
+            style={{
+              fontSize: 14,
+              fontWeight: 500,
+              color: "white",
+              alignSelf: "center",
+            }}
+          >
+            Ver más
+          </Link>
         </Box>
         <Box
           as="section"

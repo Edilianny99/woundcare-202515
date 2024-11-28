@@ -17,6 +17,10 @@ notificationImages.set(
   "MONITORING_SIGNS_AND_SYMPTOMS",
   "/notifications/symptoms-man.svg"
 );
+notificationImages.set(
+  "ALERT",
+  "/notifications/alert.svg"
+);
 notificationImages.set("DISCHARGE", "/notifications/discharge.svg");
 notificationImages.set("MEDICATION_TIME", "/notifications/medication.svg");
 notificationImages.set("BANDAGE_CHANGE", "/notifications/first-aid-kit.svg");
@@ -30,3 +34,4 @@ notificationTitles.set(
 notificationTitles.set("DISCHARGE", "Alta del paciente");
 notificationTitles.set("MEDICATION_TIME", "Es hora de tu medicación");
 notificationTitles.set("BANDAGE_CHANGE", "Cambio de vendaje");
+notificationTitles.set("ALERT", "Alerta");
