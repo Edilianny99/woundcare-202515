@@ -19,11 +19,14 @@ async function bootstrap() {
     .setTitle('WoundCare API')
     .setDescription('API for WoundCare application')
     .setVersion('1.0')
-    .addTag('WoundCare')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, document, {
+    swaggerOptions: {
+      docExpansion: 'none',
+    },
+  });
 
   await app.listen(process.env.APP_PORT || 3000);
 }

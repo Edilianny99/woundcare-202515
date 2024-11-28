@@ -24,7 +24,7 @@ export class PatientService {
         Number(process.env.SALT_ROUNDS) || 10,
       );
 
-      const [patientUser, patient] = await this.prismaService.$transaction([
+      const [, patient] = await this.prismaService.$transaction([
         this.prismaService.user.create({
           data: {
             nationalId: createPatientDto.nationalId,
@@ -267,7 +267,7 @@ export class PatientService {
 
   async remove(id: string) {
     try {
-      const [patient, patientUser] = await this.prismaService.$transaction([
+      const [patient] = await this.prismaService.$transaction([
         this.prismaService.patient.delete({
           where: {
             nationalId: id,

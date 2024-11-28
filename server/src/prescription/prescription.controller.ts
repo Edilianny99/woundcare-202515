@@ -25,7 +25,7 @@ import { Role } from '@prisma/client';
 import { UpdatePrescriptionDto } from './dto/update-prescription.dto';
 
 @Controller('prescription')
-@ApiTags('Prescription')
+@ApiTags('prescription')
 @UseGuards(AuthGuard, RolesGuard)
 @ApiBearerAuth()
 export class PrescriptionController {
@@ -77,9 +77,12 @@ export class PrescriptionController {
   @Patch(':id')
   @Roles(Role.ADMIN, Role.NURSE)
   @HttpCode(HttpStatus.CREATED)
-  async update(@Param('id') id: string ,@Body() updatePrescriptionDto: UpdatePrescriptionDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updatePrescriptionDto: UpdatePrescriptionDto,
+  ) {
     try {
-      return await this.prescriptionService.update(+id, updatePrescriptionDto)
+      return await this.prescriptionService.update(+id, updatePrescriptionDto);
     } catch (error) {
       if (error instanceof NotFoundError) {
         throw new NotFoundException(error.message);

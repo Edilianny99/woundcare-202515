@@ -21,6 +21,7 @@ import { ConfigModule as CustomConfigModule } from './common/config/config.modul
 import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { WoundEvolutionModule } from './wound-evolution/wound-evolution.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { join } from 'path';
     ConversationsModule,
     MessagesModule,
     BandageChangeModule,
+    WoundEvolutionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

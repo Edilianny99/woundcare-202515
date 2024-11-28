@@ -33,7 +33,7 @@ import { RequestWithUser } from 'src/common/interfaces/request.interface';
 import { PaginatedResponse } from 'src/common/responses/paginatedResponse';
 import { DoctorDto } from './dto/doctor.dto';
 
-@ApiTags('Doctor')
+@ApiTags('doctor')
 @ApiBearerAuth()
 @UseGuards(AuthGuard, RolesGuard)
 @Controller('doctor')
