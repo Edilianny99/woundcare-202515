@@ -164,7 +164,7 @@ function Login() {
 						{showPassword ? <ViewOffIcon /> : <ViewIcon />}
 					</Button>
 				</InputGroup>
-				<Box display="flex" gap={1}>
+				{/* <Box display="flex" gap={1}>
 					<Checkbox
 						borderColor={"#805ad5"}
 						colorScheme="purple"
@@ -184,6 +184,37 @@ function Login() {
 							términos y condiciones
 						</Link>
 					</Text>
+				</Box> */}
+
+				<Box display="flex" gap={1}>
+					<label style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+						<Checkbox
+							id="acceptTerms"
+							borderColor={"#805ad5"}
+							colorScheme="purple"
+							onChange={() => setAcceptTerms(!acceptTerms)}
+						></Checkbox>
+						<Text
+							color="#8E8E8E"
+							fontSize="smaller"
+							style={{
+								cursor: "pointer",
+							}}
+						>
+							Estoy de acuerdo con los{" "}
+							<Link
+								href={routes.termsAndConditions}
+								target="_blank"
+								style={{
+									textDecoration: "underline",
+									cursor: "pointer",
+									fontWeight: 600,
+								}}
+							>
+								términos y condiciones
+							</Link>
+						</Text>
+					</label>
 				</Box>
 
 				<Button
