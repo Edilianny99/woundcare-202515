@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Clínica</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f3f7;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 210mm;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #6a1b9a;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .back-button {
+            font-size: 20px;
+            color: #6a1b9a;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: #6a1b9a;
+            margin: 10px 0;
+        }
+
+        .history-number {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .patient-info {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .avatar img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .patient-name h3 {
+            margin: 0;
+            color: #6a1b9a;
+        }
+
+        .patient-name p {
+            margin: 0;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h4 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+        }
+
+        .section p,
+        .section ul {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section ul li {
+            list-style-type: disc;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>{{title}}</h1>
+        </header>
+
+        <section class="main-content">
+            <h2>{{sectionTitle}}</h2>
+            <p class="history-number">N° {{historyNumber}}</p>
+
+            <div class="patient-info">
+                <div class="avatar">
+                    <img src="{{avatar}}" alt="Avatar del paciente">
+                </div>
+                <div class="patient-name">
+                    <h3>{{patientName}}</h3>
+                    <p>{{patientStatus}}</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h4>Información del paciente:</h4>
+                <p><strong>Nombre:</strong> {{user.fullname}}</p>
+                <p><strong>Edad:</strong> {{patientInfo.age}} años</p>
+                <p><strong>Género:</strong> {{patientInfo.gender}}</p>
+                <p><strong>Fecha de ingreso:</strong> {{patientInfo.admissionDate}}</p>
+                <p><strong>CI:</strong> {{patientInfo.ci}}</p>
+            </div>
+
+            <div class="section">
+                <h4>Antecedentes médicos:</h4>
+                <ul>
+                    {{#each medicalHistory}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+
+            <div class="section">
+                <h4>Motivo de consulta:</h4>
+                <p>{{consultationReason}}</p>
+            </div>
+
+            <div class="section">
+                <h4>Historia de la enfermedad actual:</h4>
+                {{#each currentIllness}}
+                <p>• {{this}}</p>
+                {{/each}}
+            </div>
+
+            <div class="section">
+                <h4>Evaluación física:</h4>
+                <p><strong>Estado general:</strong> {{physicalEvaluation.generalState}}</p>
+                <p><strong>Signos vitales:</strong> TA {{physicalEvaluation.vitalSigns.ta}}, FC {{physicalEvaluation.vitalSigns.fc}} lpm, FR {{physicalEvaluation.vitalSigns.fr}} rpm, T° {{physicalEvaluation.vitalSigns.temp}}°C.</p>
+                <p><strong>Herida:</strong> {{physicalEvaluation.wound}}</p>
+            </div>
+
+            <div class="section">
+                <h4>Tratamientos previos:</h4>
+                <ul>
+                    {{#each previousTreatments}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+
+            <div class="section">
+                <h4>Resultados de laboratorio:</h4>
+                <p><strong>Glucosa en ayunas:</strong> {{labResults.glucose}} mg/dL</p>
+                <p><strong>Hemoglobina glucosilada (HbA1c):</strong> {{labResults.hba1c}}%</p>
+                <p><strong>Cultivo de la herida:</strong> {{labResults.woundCulture}}</p>
+            </div>
+
+            <div class="section">
+                <h4>Plan de cuidados:</h4>
+                {{#each carePlan}}
+                <p>• {{this}}</p>
+                {{/each}}
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

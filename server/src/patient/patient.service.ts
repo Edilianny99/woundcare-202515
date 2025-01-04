@@ -12,10 +12,14 @@ import {
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { PaginatedResponse } from 'src/common/responses/paginatedResponse';
 import { PatientDto } from './dto/patient.dto';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as puppeteer from 'puppeteer';
+import * as Handlebars from 'handlebars';
 
 @Injectable()
 export class PatientService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) { }
 
   async create(createPatientDto: CreatePatientDto) {
     try {
@@ -293,5 +297,40 @@ export class PatientService {
         cause: error,
       });
     }
+  }
+
+  async exportPdf(id: string): Promise<Buffer> {
+    const patient = await this.prismaService.patient.findUnique({
+      where: {
+        nationalId: id,
+      },
+      include: {
+        user: {
+          select: {
+            fullname: true,
+          },
+        },
+        MedicalFile: true,
+      }, 
+    });
+
+    console.log(patient);
+
+    const htmlPath = path.resolve('./src/users/', 'pdf.html');
+    const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+    const template = Handlebars.compile(htmlContent);
+    const filledHtml = template(patient);
+
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(filledHtml);
+
+    const pdfBuffer = Buffer.from(await page.pdf({
+      format: 'A4'
+    }));
+
+    await browser.close();
+
+    return pdfBuffer;
   }
 }
