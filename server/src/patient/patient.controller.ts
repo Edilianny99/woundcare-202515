@@ -16,7 +16,9 @@ import {
   Query,
   DefaultValuePipe,
   ParseIntPipe,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { PatientService } from './patient.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
@@ -191,5 +193,20 @@ export class PatientController {
       }
       throw new InternalServerErrorException(error.message, { cause: error });
     }
+  }
+
+  @Get('export-pdf/:id')
+  async exportPdf(@Res() res: Response, @Param('id') id: string) {
+    const buffer = await this.patientService.exportPdf(id);
+
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename=patient-history.pdf`,
+      'Content-Length': buffer.length,
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      Pragma: 'no-cache',
+      Expires: 0,
+    });
+    res.end(buffer);
   }
 }
