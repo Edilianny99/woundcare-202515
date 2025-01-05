@@ -14,7 +14,10 @@ import { NotificationsService } from 'src/notifications/notifications.service';
 
 @Injectable()
 export class WoundEvolutionService {
-  constructor(private readonly prismaService: PrismaService, private readonly notificationService: NotificationsService) { }
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly notificationService: NotificationsService,
+  ) {}
 
   async create(createWoundEvolutionDto: CreateWoundEvolutionDto) {
     const questionaireDto =
@@ -27,12 +30,17 @@ export class WoundEvolutionService {
       },
     });
 
-    await this.notifyBandageChange(createWoundEvolutionDto.questionaire, createWoundEvolutionDto.medicalFileId);
+    await this.notifyBandageChange(
+      createWoundEvolutionDto.questionaire,
+      createWoundEvolutionDto.medicalFileId,
+    );
 
-    if (await this.isNotificationNecessary(createWoundEvolutionDto.questionaire)) {
+    if (
+      await this.isNotificationNecessary(createWoundEvolutionDto.questionaire)
+    ) {
       const medicalFile = await this.prismaService.medicalFile.findUnique({
         where: { id: createWoundEvolutionDto.medicalFileId },
-        include: { patient: { include: { user: true } } }
+        include: { patient: { include: { user: true } } },
       });
 
       if (!medicalFile) {
@@ -92,8 +100,13 @@ export class WoundEvolutionService {
     return count >= 3;
   }
 
-  async notifyBandageChange(questionaire: QuestionaireAnswer[], medicalFileId: number) {
-    const bandageChangeQuestion = questionaire.find((q) => q.key === 'has-clean-bandages-on');
+  async notifyBandageChange(
+    questionaire: QuestionaireAnswer[],
+    medicalFileId: number,
+  ) {
+    const bandageChangeQuestion = questionaire.find(
+      (q) => q.key === 'has-clean-bandages-on',
+    );
 
     if (bandageChangeQuestion?.answer === 'no') {
       const medicalFile = await this.prismaService.medicalFile.findUnique({
