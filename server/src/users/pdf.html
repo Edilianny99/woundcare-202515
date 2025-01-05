@@ -115,36 +115,26 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>{{title}}</h1>
+            <h1>Woundcare</h1>
         </header>
 
         <section class="main-content">
-            <h2>{{sectionTitle}}</h2>
-            <p class="history-number">N° {{historyNumber}}</p>
-
-            <div class="patient-info">
-                <div class="avatar">
-                    <img src="{{avatar}}" alt="Avatar del paciente">
-                </div>
-                <div class="patient-name">
-                    <h3>{{patientName}}</h3>
-                    <p>{{patientStatus}}</p>
-                </div>
-            </div>
+            <h2>Historial Clínico del paciente</h2>
 
             <div class="section">
                 <h4>Información del paciente:</h4>
                 <p><strong>Nombre:</strong> {{user.fullname}}</p>
-                <p><strong>Edad:</strong> {{patientInfo.age}} años</p>
-                <p><strong>Género:</strong> {{patientInfo.gender}}</p>
-                <p><strong>Fecha de ingreso:</strong> {{patientInfo.admissionDate}}</p>
-                <p><strong>CI:</strong> {{patientInfo.ci}}</p>
+                <p><strong>Edad:</strong> {{birthDate}} años</p>
+                <p><strong>Género:</strong> {{genre}}</p>
+                <p><strong>CI:</strong> {{nationalId}}</p>
             </div>
 
+            {{#each MedicalFile}}
+            <p><strong>Historia N° {{this.id}}</strong></p>
             <div class="section">
                 <h4>Antecedentes médicos:</h4>
                 <ul>
-                    {{#each medicalHistory}}
+                    {{#each this.medicalHistory}}
                     <li>{{this}}</li>
                     {{/each}}
                 </ul>
@@ -165,7 +155,9 @@
             <div class="section">
                 <h4>Evaluación física:</h4>
                 <p><strong>Estado general:</strong> {{physicalEvaluation.generalState}}</p>
-                <p><strong>Signos vitales:</strong> TA {{physicalEvaluation.vitalSigns.ta}}, FC {{physicalEvaluation.vitalSigns.fc}} lpm, FR {{physicalEvaluation.vitalSigns.fr}} rpm, T° {{physicalEvaluation.vitalSigns.temp}}°C.</p>
+                <p><strong>Signos vitales:</strong> TA {{physicalEvaluation.vitalSigns.ta}}, FC
+                    {{physicalEvaluation.vitalSigns.fc}} lpm, FR {{physicalEvaluation.vitalSigns.fr}} rpm, T°
+                    {{physicalEvaluation.vitalSigns.temp}}°C.</p>
                 <p><strong>Herida:</strong> {{physicalEvaluation.wound}}</p>
             </div>
 
@@ -192,6 +184,7 @@
                 {{/each}}
             </div>
         </section>
+        {{/each}}
     </div>
 </body>
 

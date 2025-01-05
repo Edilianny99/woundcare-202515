@@ -305,17 +305,12 @@ export class PatientService {
         nationalId: id,
       },
       include: {
-        user: {
-          select: {
-            fullname: true,
-          },
-        },
+        user: true,
         MedicalFile: true,
-      }, 
+      },
     });
 
     console.log(patient);
-
     const htmlPath = path.resolve('./src/users/', 'pdf.html');
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
     const template = Handlebars.compile(htmlContent);
