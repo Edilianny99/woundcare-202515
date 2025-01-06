@@ -11,7 +11,9 @@ import {
   HttpStatus,
   UseGuards,
   NotFoundException,
+  Res
 } from '@nestjs/common';
+import { Response } from 'express';
 import { MedicalFileService } from './medical-file.service';
 import { CreateMedicalFileDto } from './dto/create-medical-file.dto';
 import { UpdateMedicalFileDto } from './dto/update-medical-file.dto';
@@ -100,5 +102,20 @@ export class MedicalFileController {
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
     return this.medicalFileService.remove(+id);
+  }
+
+  @Get('export-pdf/:id')
+  async exportPdf(@Res() res: Response, @Param('id') id: string) {
+    const buffer = await this.medicalFileService.exportPdf(id);
+
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename=patient-history.pdf`,
+      'Content-Length': buffer.length,
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      Pragma: 'no-cache',
+      Expires: 0,
+    });
+    res.end(buffer);
   }
 }

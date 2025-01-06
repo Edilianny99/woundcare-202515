@@ -194,19 +194,4 @@ export class PatientController {
       throw new InternalServerErrorException(error.message, { cause: error });
     }
   }
-
-  @Get('export-pdf/:id')
-  async exportPdf(@Res() res: Response, @Param('id') id: string) {
-    const buffer = await this.patientService.exportPdf(id);
-
-    res.set({
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': `attachment; filename=patient-history.pdf`,
-      'Content-Length': buffer.length,
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-      Pragma: 'no-cache',
-      Expires: 0,
-    });
-    res.end(buffer);
-  }
 }
