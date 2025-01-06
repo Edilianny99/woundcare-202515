@@ -8,6 +8,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as puppeteer from 'puppeteer';
 import * as Handlebars from 'handlebars';
+import { QuestionaireKeys } from 'src/wound-evolution/wound-evolution-questionaire';
+import { QuestionaireAnswer } from 'src/wound-evolution/wound-evolution-questionaire';
 
 @Injectable()
 export class MedicalFileService {
@@ -259,23 +261,52 @@ export class MedicalFileService {
     });
   }
 
-  async exportPdf(id: number): Promise<Buffer> {
+  async exportPdf(id: number): Promise<any> {
     const medicalFile = await this.prismaService.medicalFile.findUnique({
       where: {
         id: id,
       },
       include: {
+        patient: {
+          include: { user: true }
+        },
         WoundEvolution: true,
-        nurse: true,
+        nurse: { include: { user: true } },
       },
     });
 
-    console.log('Medical File:', medicalFile);
+    if (!medicalFile) {
+      throw new HttpException(
+        "this medical file doesn't exists",
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    const medFile = {
+      ...medicalFile,
+      WoundEvolution: medicalFile.WoundEvolution.map((we) => {
+        const array = we.questionaire as QuestionaireAnswer[];
+        return {
+          ...we,
+          questionaire: array.map((q) => {
+            if (q.key === 'wound-photo') {
+              return {
+                key: QuestionaireKeys[q.key as keyof typeof QuestionaireKeys],
+                answer: q.answer.split(', '),
+              };
+            } return {
+              key: QuestionaireKeys[q.key as keyof typeof QuestionaireKeys],
+              answer: q.answer,
+            };
+          })
+        }
+      })
+    };
+
     const htmlPath = path.resolve('./src/medical-file/', 'pdf.html');
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
     const template = Handlebars.compile(htmlContent);
-    const filledHtml = template(medicalFile);
-
+    const filledHtml = template(medFile);
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setContent(filledHtml);

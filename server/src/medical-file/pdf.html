@@ -128,51 +128,30 @@
 
             <div class="section">
                 <h4>Información del paciente:</h4>
-                <p><strong>Nombre y Apellido:</strong> {{user.fullname}}</p>
-                <p><strong>Edad:</strong> {{birthDate}} años</p>
-                <p><strong>Género:</strong> {{genre}}</p>
-                <p><strong>CI:</strong> {{nationalId}}</p>
-                <p><strong>Dirección:</strong> {{address}}</p>
+                <p><strong>CI:</strong> {{patientId}}</p>
+                <p><strong>Nombre y Apellido:</strong> {{patient.user.fullname}}</p>
+                <p><strong>Edad:</strong> {{patient.birthDate}} años</p>
+                <p><strong>Género:</strong> {{patient.genre}}</p>
+                <p><strong>Dirección:</strong> {{patient.address}}</p>
+                <p><strong>Enfermero responsable:</strong> {{nurse.user.fullname}}</p>
             </div>
-
-            {{#each MedicalFile}}
-            <h3>Historia N° {{this.id}}</h3>
+            
+            {{#each WoundEvolution}}
+            <h3>Formulario N° {{this.id}}</h3>
             <div class="section">
-                <p><strong>Enfermero responsable:</strong> {{this.nurse.user.fullname}}</p>
-            </div>
-
-            <div class="section">
-                <h4>Motivo de consulta:</h4>
-                <ul>
-                    {{#each this.medicalHistory}}
-                    <li>{{this}}</li>
-                    {{/each}}
-                </ul>
+                <p><strong>Fecha:</strong> {{this.date}}</p>
             </div>
 
             <div class="section">
-                <h4>Motivo de consulta:</h4>
-                <ul>
-                    {{#each this.medicalHistory}}
-                    <li>{{this}}</li>
-                    {{/each}}
-                </ul>
+                <h4>Respuestas:</h4>
+                {{#each this.questionaire}}
+                    <p><strong>{{this.key}}:</strong> {{this.answer}}</p>
+                {{/each}}
             </div>
 
             <div class="section">
-                <h4>Evaluación física:</h4>
-                <p><strong>Estado general:</strong> {{physicalEvaluation.generalState}}</p>
-                <p><strong>Signos vitales:</strong> TA {{physicalEvaluation.vitalSigns.ta}}, FC
-                    {{physicalEvaluation.vitalSigns.fc}} lpm, FR {{physicalEvaluation.vitalSigns.fr}} rpm, T°
-                    {{physicalEvaluation.vitalSigns.temp}}°C.</p>
-                <p><strong>Herida:</strong> {{physicalEvaluation.wound}}</p>
-            </div>
-
-            <div class="section">
-                <h4>Resultados de laboratorio:</h4>
-                <p><strong>Glucosa en ayunas:</strong> {{labResults.glucose}} mg/dL</p>
-                <p><strong>Hemoglobina glucosilada (HbA1c):</strong> {{labResults.hba1c}}%</p>
-                <p><strong>Cultivo de la herida:</strong> {{labResults.woundCulture}}</p>
+                <h4>Imagenes:</h4>
+                
             </div>
 
             <div class="section">

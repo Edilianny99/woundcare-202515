@@ -28,7 +28,7 @@ import { Role } from '@prisma/client';
 @UseGuards(AuthGuard, RolesGuard)
 @Controller('medical-file')
 export class MedicalFileController {
-  constructor(private readonly medicalFileService: MedicalFileService) {}
+  constructor(private readonly medicalFileService: MedicalFileService) { }
 
   @Post()
   @Roles(Role.ADMIN, Role.NURSE)
@@ -105,6 +105,8 @@ export class MedicalFileController {
   }
 
   @Get('export-pdf/:id')
+  @Roles(Role.ADMIN, Role.NURSE)
+  @HttpCode(HttpStatus.OK)
   async exportPdf(@Res() res: Response, @Param('id') id: string) {
     const buffer = await this.medicalFileService.exportPdf(+id);
     res.set({
@@ -113,7 +115,8 @@ export class MedicalFileController {
       'Content-Length': buffer.length,
       'Cache-Control': 'no-cache, no-store, must-revalidate',
       Pragma: 'no-cache',
-      Expires: 0,
+      format: 'A4',       
+      displayHeaderFooter: true,
     });
     res.end(buffer);
   }
