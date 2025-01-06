@@ -29,7 +29,7 @@
         }
 
         .header {
-            background-color: #6a1b9a;
+            background: #6a1b9a;
             color: #fff;
             padding: 15px;
             display: flex;
@@ -53,6 +53,11 @@
         }
 
         h2 {
+            color: #6a1b9a;
+            margin: 10px 0;
+        }
+
+        h3 {
             color: #6a1b9a;
             margin: 10px 0;
         }
@@ -123,16 +128,21 @@
 
             <div class="section">
                 <h4>Información del paciente:</h4>
-                <p><strong>Nombre:</strong> {{user.fullname}}</p>
+                <p><strong>Nombre y Apellido:</strong> {{user.fullname}}</p>
                 <p><strong>Edad:</strong> {{birthDate}} años</p>
                 <p><strong>Género:</strong> {{genre}}</p>
                 <p><strong>CI:</strong> {{nationalId}}</p>
+                <p><strong>Dirección:</strong> {{address}}</p>
             </div>
 
             {{#each MedicalFile}}
-            <p><strong>Historia N° {{this.id}}</strong></p>
+            <h3>Historia N° {{this.id}}</h3>
             <div class="section">
-                <h4>Antecedentes médicos:</h4>
+                <p><strong>Enfermero responsable:</strong> {{this.nurse.user.fullname}}</p>
+            </div>
+
+            <div class="section">
+                <h4>Motivo de consulta:</h4>
                 <ul>
                     {{#each this.medicalHistory}}
                     <li>{{this}}</li>
@@ -142,14 +152,11 @@
 
             <div class="section">
                 <h4>Motivo de consulta:</h4>
-                <p>{{consultationReason}}</p>
-            </div>
-
-            <div class="section">
-                <h4>Historia de la enfermedad actual:</h4>
-                {{#each currentIllness}}
-                <p>• {{this}}</p>
-                {{/each}}
+                <ul>
+                    {{#each this.medicalHistory}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
             </div>
 
             <div class="section">
@@ -159,15 +166,6 @@
                     {{physicalEvaluation.vitalSigns.fc}} lpm, FR {{physicalEvaluation.vitalSigns.fr}} rpm, T°
                     {{physicalEvaluation.vitalSigns.temp}}°C.</p>
                 <p><strong>Herida:</strong> {{physicalEvaluation.wound}}</p>
-            </div>
-
-            <div class="section">
-                <h4>Tratamientos previos:</h4>
-                <ul>
-                    {{#each previousTreatments}}
-                    <li>{{this}}</li>
-                    {{/each}}
-                </ul>
             </div>
 
             <div class="section">
@@ -187,5 +185,5 @@
         {{/each}}
     </div>
 </body>
-
 </html>
+

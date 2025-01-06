@@ -306,11 +306,21 @@ export class PatientService {
       },
       include: {
         user: true,
-        MedicalFile: true,
+        MedicalFile: {
+          include: {
+          WoundEvolution: true,
+            nurse: {
+              include: {
+                user: true,
+              },
+            },
+          },
+        },
       },
     });
 
-    console.log(patient);
+    console.log('Paciente:', patient);
+    console.log('Medical File:', patient?.MedicalFile);
     const htmlPath = path.resolve('./src/users/', 'pdf.html');
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
     const template = Handlebars.compile(htmlContent);
