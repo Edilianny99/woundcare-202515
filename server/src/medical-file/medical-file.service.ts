@@ -11,7 +11,7 @@ import * as Handlebars from 'handlebars';
 
 @Injectable()
 export class MedicalFileService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) { }
   async create(createMedicalFileDto: CreateMedicalFileDto) {
     const patient = await this.prismaService.patient.findUnique({
       select: {
@@ -259,32 +259,22 @@ export class MedicalFileService {
     });
   }
 
-  async exportPdf(id: string): Promise<Buffer> {
-    const patient = await this.prismaService.patient.findUnique({
+  async exportPdf(id: number): Promise<Buffer> {
+    const medicalFile = await this.prismaService.medicalFile.findUnique({
       where: {
-        nationalId: id,
+        id: id,
       },
       include: {
-        user: true,
-        MedicalFile: {
-          include: {
-          WoundEvolution: true,
-            nurse: {
-              include: {
-                user: true,
-              },
-            },
-          },
-        },
+        WoundEvolution: true,
+        nurse: true,
       },
     });
 
-    console.log('Paciente:', patient);
-    console.log('Medical File:', patient?.MedicalFile);
-    const htmlPath = path.resolve('./src/users/', 'pdf.html');
+    console.log('Medical File:', medicalFile);
+    const htmlPath = path.resolve('./src/medical-file/', 'pdf.html');
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
     const template = Handlebars.compile(htmlContent);
-    const filledHtml = template(patient);
+    const filledHtml = template(medicalFile);
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();

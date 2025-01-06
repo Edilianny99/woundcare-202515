@@ -106,11 +106,10 @@ export class MedicalFileController {
 
   @Get('export-pdf/:id')
   async exportPdf(@Res() res: Response, @Param('id') id: string) {
-    const buffer = await this.medicalFileService.exportPdf(id);
-
+    const buffer = await this.medicalFileService.exportPdf(+id);
     res.set({
       'Content-Type': 'application/pdf',
-      'Content-Disposition': `attachment; filename=patient-history.pdf`,
+      'Content-Disposition': `attachment; filename=Historia-Clinica-${id}.pdf`,
       'Content-Length': buffer.length,
       'Cache-Control': 'no-cache, no-store, must-revalidate',
       Pragma: 'no-cache',
