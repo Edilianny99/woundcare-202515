@@ -303,6 +303,13 @@ export class MedicalFileService {
       })
     };
 
+    Handlebars.registerHelper('eq', (a, b) => {
+      return a === b;
+    });
+
+    Handlebars.registerHelper('calculateAge', (date) => { return new Date().getFullYear() - new Date(date).getFullYear(); });
+    Handlebars.registerHelper('formatDate', (date) => { return new Date(date).toLocaleDateString(); });
+
     const htmlPath = path.resolve('./src/medical-file/', 'pdf.html');
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
     const template = Handlebars.compile(htmlContent);

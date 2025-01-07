@@ -114,6 +114,12 @@
             list-style-type: disc;
             margin-bottom: 5px;
         }
+
+        img {
+            width: 240px;
+            margin-bottom: 10px;
+            aspect-ratio: attr(width) / attr(height);
+        }
     </style>
 </head>
 
@@ -130,39 +136,38 @@
                 <h4>Información del paciente:</h4>
                 <p><strong>CI:</strong> {{patientId}}</p>
                 <p><strong>Nombre y Apellido:</strong> {{patient.user.fullname}}</p>
-                <p><strong>Edad:</strong> {{patient.birthDate}} años</p>
+                <p><strong>Edad:</strong> {{calculateAge patient.birthDate}} años</p>
                 <p><strong>Género:</strong> {{patient.genre}}</p>
                 <p><strong>Dirección:</strong> {{patient.address}}</p>
                 <p><strong>Enfermero responsable:</strong> {{nurse.user.fullname}}</p>
             </div>
-            
+
             {{#each WoundEvolution}}
-            <h3>Formulario N° {{this.id}}</h3>
-            <div class="section">
-                <p><strong>Fecha:</strong> {{this.date}}</p>
-            </div>
-
-            <div class="section">
-                <h4>Respuestas:</h4>
-                {{#each this.questionaire}}
-                    <p><strong>{{this.key}}:</strong> {{this.answer}}</p>
-                {{/each}}
-            </div>
-
-            <div class="section">
-                <h4>Imagenes:</h4>
-                
-            </div>
-
-            <div class="section">
-                <h4>Plan de cuidados:</h4>
-                {{#each carePlan}}
-                <p>• {{this}}</p>
-                {{/each}}
-            </div>
-        </section>
-        {{/each}}
+                <h3>Estado de la herida el: {{formatDate this.date}}</h3>
+                </div>
+            
+                <div class="section">
+                    <h4>Respuestas:</h4>
+                    {{#each this.questionaire}}
+                        {{#if (eq this.key "Fotografía de la herida")}}
+                            <p><strong>{{this.key}}:</strong></p>
+                            {{#each this.answer}}
+                                <img src="{{this}}">
+                            {{/each}}
+                        {{else}}
+                            {{#if (eq this.answer "false")}}
+                                <p><strong>{{this.key}}:</strong> No tiene</p>
+                            {{else if (eq this.answer "true")}}
+                                <p><strong>{{this.key}}:</strong> Sí</p>
+                            {{else if this.answer}}
+                                <p><strong>{{this.key}}:</strong> {{this.answer}}</p>
+                            {{/if}}
+                        {{/if}}
+                    {{/each}}
+                </div>
+    </section>
+    {{/each}}
     </div>
 </body>
-</html>
 
+</html>
