@@ -9,6 +9,7 @@ const routes = {
   dischargeForm: "/discharge",
   patientMedicines: "/medicines",
   patientDailyCares: "/dailyCares",
+  patientSecondForm: "/second-form",
   patientMessages: "/medical-chat",
   patientDischargeCongrats: "/dischargeCongrats",
   patientFrequentlyAskedQuestions: "/frequently-asked-questions",

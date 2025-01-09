@@ -131,7 +131,7 @@ function HomePage() {
           />
           <MenuOptionCard
             imageSrc="/homePage/daily-cares.svg"
-            src={routes.patientDailyCares}
+            src={routes.patientSecondForm}
             title="Cuidados diarios"
           />
           <MenuOptionCard
