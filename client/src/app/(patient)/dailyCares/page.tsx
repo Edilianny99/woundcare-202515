@@ -528,7 +528,7 @@ function DailyCares() {
 						</RadioGroup>
 					</Box>
 					<Image
-						src="/dailyCare/alergies.png"
+						src="/dailyCare/bandage.png"
 						alt="fever"
 						width={105}
 						height={105}
