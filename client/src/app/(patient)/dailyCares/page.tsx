@@ -267,7 +267,6 @@ function DailyCares() {
 							value={painValue}
 							onChange={(value) => {
 							setPainValue(value);
-							console.log(value);
 						}}
 						/>
 					</Box>

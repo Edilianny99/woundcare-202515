@@ -11,7 +11,7 @@ interface PainSliderProps {
 export function PainSlider({ min, max, step, value, onChange }: PainSliderProps) {
     const labelStyles = {
     mt: "2.5",
-    ml: "-2.5",
+    ml: "-3",
     fontSize: "md",
     };
 
@@ -45,7 +45,7 @@ return (
         <SliderTrack bg="purple.100">
             <SliderFilledTrack bg="purple.600" />
         </SliderTrack>
-        <SliderThumb boxSize={6} bg="purple.600" />
+        <SliderThumb boxSize={4} bg="purple.600" />
         </Slider>
     </Flex>
     );
