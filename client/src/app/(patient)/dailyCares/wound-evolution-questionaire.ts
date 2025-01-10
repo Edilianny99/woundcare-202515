@@ -8,6 +8,17 @@ export const QuestionaireKeys = {
 	"secretion-type": "Tipo de secreción", // Optional only if has-secretion is true
 	"has-clean-bandages-on": "Esta usando vendajes limpios", // BS ✅
 	"daily-description": "Cuidado diario realizado", // Text Description ✅
+	// Second Questionaire
+	"wound-aspect": "Aspecto de la herida",
+	"wound-extension": "Extensión de la herida (cm)",
+	"wound-depth": "Profundidad de la herida (cm)",
+	"secretion-quality": "Calidad de la secreción",
+	"secretion-quantity": "Cantidad de secreción",
+	"necrotic-tissue": "Nivel de tejido necrótico",
+	"granulation-tissue": "Nivel de tejido de granulación",
+	"edema-level": "Nivel de edema",
+	"pain-level": "Nivel de dolor (escala 0-10)",
+	"surrounding-skin": "Estado de la piel circundante",
 };
 
 export type QuestionaireAnswer = {
