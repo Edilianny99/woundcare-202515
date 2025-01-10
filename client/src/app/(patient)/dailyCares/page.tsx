@@ -28,6 +28,7 @@ import { answerMessage } from "@/utils/dailyCaresAnswers";
 import { secretionTypes } from "./wound-evolution-questionaire";
 import { createWoundEvolution } from "@/services/wound-evolution/wound-evolution.service";
 import { MoreDetailsForm } from "./more-details-form";
+import { PainSlider } from "@/components/slider";
 
 function DailyCares() {
 	const [files, setFiles] = useState<File[]>([]);
@@ -250,15 +251,15 @@ function DailyCares() {
 						<Text fontWeight="bold" color="#3B3B3B" fontSize="16px" w="60vw">
 							¿Tiene dolor en la herida?
 						</Text>
-						<input
-							type="range"
+						<PainSlider
 							min={0}
 							max={10}
 							step={1}
 							value={painValue}
-							onChange={(event) => {
-								setPainValue(Number(event.target.value));
-							}}
+							onChange={(value) => {
+							setPainValue(value);
+							console.log(value);
+						}}
 						/>
 					</Box>
 				</Flex>
