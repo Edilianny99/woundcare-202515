@@ -33,23 +33,67 @@ export const secretionTypes = [
 	{ src: "/dailyCare/alergies.png", type: "purulento" },
 ];
 
+// NOTE: Second Questionaire
+
 export const woundAspectsTypes = [
-	{ src: "/woundCare/irritation.png", type: "Irritación" },
-	{ src: "/woundCare/redness.png", type: "Enrojecido" },
-	{ src: "/woundCare/yellow-pale.png", type: "Amarillo pálido" },
-	{ src: "/woundCare/necrotic.png", type: "Necrótico" },
+	{ src: "/woundCare/irritation.png", type: "Irritación", value: 1 },
+	{ src: "/woundCare/redness.png", type: "Enrojecido", value: 2 },
+	{ src: "/woundCare/yellow-pale.png", type: "Amarillo pálido", value: 3 },
+	{ src: "/woundCare/necrotic.png", type: "Necrótico", value: 4 },
+];
+
+export const woundExtensionTypes = [
+	{ type: "0 - 1", text: "Pequeña", value: 1 },
+	{ type: "entre 1 - 3", text: "Mediana", value: 2 },
+	{ type: "entre 3 - 6", text: "Grande", value: 3 },
+	{ type: "Mayor a 6", text: "Muy grande", value: 4 },
+];
+
+export const woundDepthTypes = [
+	{ type: "0", text: "Ninguna", value: 1 },
+	{ type: "menor a 1", text: "Pequeña", value: 2 },
+	{ type: "entre 1 - 3", text: "Media", value: 3 },
+	{ type: "Mayor a 3", text: "Grande", value: 4 },
 ];
 
 export const secretionQualitiesTypes = [
-	{ src: "/woundCare/no-exudate.png", type: "Sin exudado" },
-	{ src: "/woundCare/serous.png", type: "Seroso" },
-	{ src: "/woundCare/cloudy.png", type: "Turbio" },
-	{ src: "/woundCare/purulent.png", type: "Purulento" },
+	{ src: "/woundCare/no-exudate.png", type: "Sin exudado", value: 1 },
+	{ src: "/woundCare/serous.png", type: "Seroso", value: 2 },
+	{ src: "/woundCare/cloudy.png", type: "Turbio", value: 3 },
+	{ src: "/woundCare/purulent.png", type: "Purulento", value: 4 },
+];
+
+export const secretionQuantityTypes = [
+	{ type: "Ausente", text: "", value: 1 },
+	{ type: "Escaso", text: "", value: 2 },
+	{ type: "Moderado", text: "", value: 3 },
+	{ type: "Abundante", text: "", value: 4 },
+];
+
+export const necroticTissueTypes = [
+	{ type: "Necrosis Leve", text: "", value: 1 },
+	{ type: "Necrosis Moderada", text: "", value: 2 },
+	{ type: "Necrosis Severa", text: "", value: 3 },
+	{ type: "Necrosis Muy Severa", text: "", value: 4 },
+];
+
+export const granulationTissueTypes = [
+	{ type: "Granulación Leve", text: "", value: 1 },
+	{ type: "Granulación Moderada", text: "", value: 2 },
+	{ type: "Granulación Abundante", text: "", value: 3 },
+	{ type: "Granulación Excesiva", text: "", value: 4 },
+];
+
+export const edemaLevelTypes = [
+	{ type: "Edema Leve", text: "", value: 1 },
+	{ type: "Edema Moderado", text: "", value: 2 },
+	{ type: "Edema Severo", text: "", value: 3 },
+	{ type: "Edema Muy Severo", text: "", value: 4 },
 ];
 
 export const surroundingSkinStatesTypes = [
-	{ src: "/woundCare/healthy.png", type: "Sana" },
-	{ src: "/woundCare/scaly.png", type: "Descamada" },
-	{ src: "/woundCare/erythematous.png", type: "Eritematosa" },
-	{ src: "/woundCare/macerated.png", type: "Macerada" },
+	{ src: "/woundCare/healthy.png", type: "Sana", value: 1 },
+	{ src: "/woundCare/scaly.png", type: "Descamada", value: 2 },
+	{ src: "/woundCare/erythematous.png", type: "Eritematosa", value: 3 },
+	{ src: "/woundCare/macerated.png", type: "Macerada", value: 4 },
 ];

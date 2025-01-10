@@ -195,7 +195,7 @@ function DailyCares() {
 							backgroundColor: "#AD8EB1",
 							width: "80vw",
 							height: "20vh",
-							borderRadius: "15px",
+							borderRadius: "1rem",
 							justifyContent: "center",
 							alignItems: "center",
 							marginBottom: "20px",
@@ -433,8 +433,8 @@ function DailyCares() {
 										border:
 											secretionType === item.type
 												? "0.25rem solid #7f5ad4"
-												: "0.25rem solid #e2e8f0",
-										borderRadius: "0.25rem",
+												: "0.25rem solid #ad8eb1",
+										borderRadius: "1rem",
 										padding: "0.25rem",
 										opacity: secretionType === item.type ? 1 : 0.6,
 									}}
@@ -490,6 +490,7 @@ function DailyCares() {
 						<Textarea
 							placeholder="Ingrese una descripción adicional de su cuidado de ser necesario..."
 							value={dailyDescription}
+							borderColor={"#ad8eb1"}
 							onChange={(event) => {
 								setDailyDescription(event.target.value);
 							}}

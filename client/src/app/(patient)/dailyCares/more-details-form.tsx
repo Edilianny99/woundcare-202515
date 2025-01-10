@@ -1,7 +1,15 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
 import {
+	edemaLevelTypes,
+	granulationTissueTypes,
+	necroticTissueTypes,
+	secretionQualitiesTypes,
+	secretionQuantityTypes,
 	secretionTypes,
+	surroundingSkinStatesTypes,
 	woundAspectsTypes,
+	woundDepthTypes,
+	woundExtensionTypes,
 } from "./wound-evolution-questionaire";
 import Image from "next/image";
 import { useState } from "react";
@@ -70,8 +78,8 @@ export function MoreDetailsForm({
 								border:
 									woundAspect === item.type
 										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
+										: "0.25rem solid #ad8eb1",
+								borderRadius: "1rem",
 								padding: "0.25rem",
 								opacity: woundAspect === item.type ? 1 : 0.6,
 							}}
@@ -101,28 +109,34 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{secretionTypes.map((item, index) => (
-						<Image
+					{woundExtensionTypes.map((item, index) => (
+						<Box
 							key={index}
-							src={item.src}
-							alt={`secretion type ${item.type}`}
-							width={105}
-							height={105}
 							style={{
+								width: "7rem",
+								aspectRatio: "1/1",
 								cursor: "pointer",
 								border:
 									woundExtension === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
-								padding: "0.25rem",
-								opacity: woundExtension === item.type ? 1 : 0.6,
+										? "0.1rem solid #7f5ad4"
+										: "0.1rem solid #ad8eb1",
+								borderRadius: "1rem",
+								padding: "0.5rem",
+								textAlign: "center",
+								display: "flex",
+								placeItems: "center",
+								color: woundExtension === item.type ? "#fff" : "#000",
+								userSelect: "none",
+								backgroundColor:
+									woundExtension === item.type ? "#7f5ad4" : "#fff",
 							}}
 							onClick={() => {
 								setWoundExtension(item.type);
 								updateSecondQuestionaire();
 							}}
-						/>
+						>
+							{item.type} ({item.text})
+						</Box>
 					))}
 				</Grid>
 			</Box>
@@ -144,28 +158,34 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{secretionTypes.map((item, index) => (
-						<Image
+					{woundDepthTypes.map((item, index) => (
+						<Box
 							key={index}
-							src={item.src}
-							alt={`secretion type ${item.type}`}
-							width={105}
-							height={105}
 							style={{
+								width: "7rem",
+								aspectRatio: "1/1",
 								cursor: "pointer",
 								border:
 									woundDepth === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
-								padding: "0.25rem",
-								opacity: woundDepth === item.type ? 1 : 0.6,
+										? "0.1rem solid #7f5ad4"
+										: "0.1rem solid #ad8eb1",
+								borderRadius: "1rem",
+								padding: "0.5rem",
+								textAlign: "center",
+								display: "flex",
+								justifyItems: "center",
+								alignItems: "center",
+								color: woundDepth === item.type ? "#fff" : "#000",
+								userSelect: "none",
+								backgroundColor: woundDepth === item.type ? "#7f5ad4" : "#fff",
 							}}
 							onClick={() => {
 								setWoundDepth(item.type);
 								updateSecondQuestionaire();
 							}}
-						/>
+						>
+							{item.type} ({item.text})
+						</Box>
 					))}
 				</Grid>
 			</Box>
@@ -187,7 +207,7 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{secretionTypes.map((item, index) => (
+					{secretionQualitiesTypes.map((item, index) => (
 						<Image
 							key={index}
 							src={item.src}
@@ -199,8 +219,8 @@ export function MoreDetailsForm({
 								border:
 									secretionQuality === item.type
 										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
+										: "0.25rem solid #ad8eb1",
+								borderRadius: "1rem",
 								padding: "0.25rem",
 								opacity: secretionQuality === item.type ? 1 : 0.6,
 							}}
@@ -230,28 +250,35 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{secretionTypes.map((item, index) => (
-						<Image
+					{secretionQuantityTypes.map((item, index) => (
+						<Box
 							key={index}
-							src={item.src}
-							alt={`secretion type ${item.type}`}
-							width={105}
-							height={105}
 							style={{
+								width: "7rem",
+								aspectRatio: "1/1",
 								cursor: "pointer",
 								border:
 									secretionQuantity === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
-								padding: "0.25rem",
-								opacity: secretionQuantity === item.type ? 1 : 0.6,
+										? "0.1rem solid #7f5ad4"
+										: "0.1rem solid #ad8eb1",
+								borderRadius: "1rem",
+								padding: "0.5rem",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								textAlign: "center",
+								color: secretionQuantity === item.type ? "#fff" : "#000",
+								userSelect: "none",
+								backgroundColor:
+									secretionQuantity === item.type ? "#7f5ad4" : "#fff",
 							}}
 							onClick={() => {
 								setSecretionQuantity(item.type);
 								updateSecondQuestionaire();
 							}}
-						/>
+						>
+							{item.type}
+						</Box>
 					))}
 				</Grid>
 			</Box>
@@ -273,28 +300,35 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{secretionTypes.map((item, index) => (
-						<Image
+					{necroticTissueTypes.map((item, index) => (
+						<Box
 							key={index}
-							src={item.src}
-							alt={`secretion type ${item.type}`}
-							width={105}
-							height={105}
 							style={{
+								width: "7rem",
+								aspectRatio: "1/1",
 								cursor: "pointer",
 								border:
 									necroticTissue === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
-								padding: "0.25rem",
-								opacity: necroticTissue === item.type ? 1 : 0.6,
+										? "0.1rem solid #7f5ad4"
+										: "0.1rem solid #ad8eb1",
+								borderRadius: "1rem",
+								padding: "0.5rem",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								textAlign: "center",
+								color: necroticTissue === item.type ? "#fff" : "#000",
+								userSelect: "none",
+								backgroundColor:
+									necroticTissue === item.type ? "#7f5ad4" : "#fff",
 							}}
 							onClick={() => {
 								setNecroticTissue(item.type);
 								updateSecondQuestionaire();
 							}}
-						/>
+						>
+							{item.type}
+						</Box>
 					))}
 				</Grid>
 			</Box>
@@ -316,27 +350,35 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{secretionTypes.map((item, index) => (
-						<Image
+					{granulationTissueTypes.map((item, index) => (
+						<Box
 							key={index}
-							src={item.src}
-							alt={`secretion type ${item.type}`}
-							width={105}
-							height={105}
 							style={{
+								width: "7rem",
+								aspectRatio: "1/1",
 								cursor: "pointer",
 								border:
 									granulationTissue === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
-								padding: "0.25rem",
-								opacity: granulationTissue === item.type ? 1 : 0.6,
+										? "0.1rem solid #7f5ad4"
+										: "0.1rem solid #ad8eb1",
+								borderRadius: "1rem",
+								padding: "0.5rem",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								textAlign: "center",
+								color: granulationTissue === item.type ? "#fff" : "#000",
+								userSelect: "none",
+								backgroundColor:
+									granulationTissue === item.type ? "#7f5ad4" : "#fff",
 							}}
 							onClick={() => {
 								setGranulationTissue(item.type);
+								updateSecondQuestionaire();
 							}}
-						/>
+						>
+							{item.type}
+						</Box>
 					))}
 				</Grid>
 			</Box>
@@ -358,28 +400,34 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{secretionTypes.map((item, index) => (
-						<Image
+					{edemaLevelTypes.map((item, index) => (
+						<Box
 							key={index}
-							src={item.src}
-							alt={`secretion type ${item.type}`}
-							width={105}
-							height={105}
 							style={{
+								width: "7rem",
+								aspectRatio: "1/1",
 								cursor: "pointer",
 								border:
 									edemaLevel === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
-								padding: "0.25rem",
-								opacity: edemaLevel === item.type ? 1 : 0.6,
+										? "0.1rem solid #7f5ad4"
+										: "0.1rem solid #ad8eb1",
+								borderRadius: "1rem",
+								padding: "0.5rem",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								textAlign: "center",
+								color: edemaLevel === item.type ? "#fff" : "#000",
+								userSelect: "none",
+								backgroundColor: edemaLevel === item.type ? "#7f5ad4" : "#fff",
 							}}
 							onClick={() => {
 								setEdemaLevel(item.type);
 								updateSecondQuestionaire();
 							}}
-						/>
+						>
+							{item.type}
+						</Box>
 					))}
 				</Grid>
 			</Box>
@@ -401,7 +449,7 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{secretionTypes.map((item, index) => (
+					{surroundingSkinStatesTypes.map((item, index) => (
 						<Image
 							key={index}
 							src={item.src}
@@ -413,8 +461,8 @@ export function MoreDetailsForm({
 								border:
 									surroundingSkin === item.type
 										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #e2e8f0",
-								borderRadius: "0.25rem",
+										: "0.25rem solid #ad8eb1",
+								borderRadius: "1rem",
 								padding: "0.25rem",
 								opacity: surroundingSkin === item.type ? 1 : 0.6,
 							}}
