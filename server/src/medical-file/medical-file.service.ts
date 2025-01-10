@@ -315,7 +315,8 @@ export class MedicalFileService {
     const template = Handlebars.compile(htmlContent);
     const filledHtml = template(medFile);
     const browser = await puppeteer.launch({
-      executablePath: '/usr/bin/chromium-browser'
+      executablePath: '/usr/bin/chromium-browser',
+      arguments: ['--no-sandbox'],
     });
     const page = await browser.newPage();
     await page.setContent(filledHtml);
