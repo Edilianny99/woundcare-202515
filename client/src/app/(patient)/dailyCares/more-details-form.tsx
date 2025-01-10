@@ -464,27 +464,34 @@ export function MoreDetailsForm({
 					placeItems={"center"}
 				>
 					{surroundingSkinStatesTypes.map((item, index) => (
-						<Image
+						<Box
 							key={index}
-							src={item.src}
-							alt={`secretion type ${item.type}`}
-							width={105}
-							height={105}
 							style={{
+								width: "7rem",
+								aspectRatio: "1/1",
 								cursor: "pointer",
 								border:
 									surroundingSkin === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #ad8eb1",
+										? "0.1rem solid #7f5ad4"
+										: "0.1rem solid #ad8eb1",
 								borderRadius: "1rem",
-								padding: "0.25rem",
-								opacity: surroundingSkin === item.type ? 1 : 0.6,
+								padding: "0.5rem",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								textAlign: "center",
+								color: surroundingSkin === item.type ? "#fff" : "#000",
+								userSelect: "none",
+								backgroundColor:
+									surroundingSkin === item.type ? "#7f5ad4" : "#fff",
 							}}
 							onClick={() => {
 								setSurrodingSkin(item.type);
 								updateSecondQuestionaire();
 							}}
-						/>
+						>
+							{item.type}
+						</Box>
 					))}
 				</Grid>
 			</Box>

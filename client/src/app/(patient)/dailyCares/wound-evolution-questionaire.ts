@@ -92,8 +92,8 @@ export const edemaLevelTypes = [
 ];
 
 export const surroundingSkinStatesTypes = [
-	{ src: "/woundCare/healthy.png", type: "Sana", value: 1 },
-	{ src: "/woundCare/scaly.png", type: "Descamada", value: 2 },
-	{ src: "/woundCare/erythematous.png", type: "Eritematosa", value: 3 },
-	{ src: "/woundCare/macerated.png", type: "Macerada", value: 4 },
+	{ type: "Sana", text: "", value: 1 },
+	{ type: "Descamada", text: "", value: 2 },
+	{ type: "Eritematosa", text: "", value: 3 },
+	{ type: "Macerada", text: "", value: 4 },
 ];
