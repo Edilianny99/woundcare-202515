@@ -24,7 +24,10 @@ import {
 	createImageMessage,
 	createTextMessage,
 } from "@/services/messages/messages.service";
-import { answerMessage } from "@/utils/dailyCaresAnswers";
+import {
+	answerMessage,
+	SecondQuestionaireAnswers,
+} from "@/utils/dailyCaresAnswers";
 import { secretionTypes } from "./wound-evolution-questionaire";
 import { createWoundEvolution } from "@/services/wound-evolution/wound-evolution.service";
 import { MoreDetailsForm } from "./more-details-form";
@@ -33,6 +36,7 @@ import { PainSlider } from "@/components/slider";
 function DailyCares() {
 	const [files, setFiles] = useState<File[]>([]);
 	const [filesToShow, setFilesToShow] = useState<string[]>([]);
+
 	const [painValue, setPainValue] = useState<number>(0);
 	const [swellingRedness, setSwellingRedness] = useState<string>("");
 	const [hasFever, setHasFever] = useState<string>("");
@@ -41,6 +45,10 @@ function DailyCares() {
 	const [secretionType, setSecretionType] = useState<string>("");
 	const [hasCleanBandagesOn, setHasCleanBandagesOn] = useState<string>("");
 	const [dailyDescription, setDailyDescription] = useState<string>("");
+
+	const [secondQuestionaire, setSecondQuestionaire] =
+		useState<SecondQuestionaireAnswers | null>(null);
+
 	const [loading, setLoading] = useState<boolean>(false);
 	const [conversation, setConversation] = useState<Conversation | null>(null);
 	const router = useRouter();
@@ -97,6 +105,7 @@ function DailyCares() {
 			secretionType,
 			hasCleanBandagesOn,
 			dailyDescription,
+			secondQuestionaire,
 		});
 
 		try {
@@ -490,7 +499,7 @@ function DailyCares() {
 				</Flex>
 				<Box w="100%" h="2px" bg="#AD8EB1" />
 				{/* NOTE: More Details Form */}
-				<MoreDetailsForm />
+				<MoreDetailsForm changeSecondQuestionaire={setSecondQuestionaire} />
 				{/* NOTE: Submit */}
 				<Button
 					w="80vw"

@@ -17,7 +17,6 @@ export const QuestionaireKeys = {
 	"necrotic-tissue": "Nivel de tejido necrótico",
 	"granulation-tissue": "Nivel de tejido de granulación",
 	"edema-level": "Nivel de edema",
-	"pain-level": "Nivel de dolor (escala 0-10)",
 	"surrounding-skin": "Estado de la piel circundante",
 };
 
@@ -32,4 +31,25 @@ export const secretionTypes = [
 	{ src: "/dailyCare/alergies.png", type: "sanguinolento" },
 	{ src: "/dailyCare/alergies.png", type: "serosanguinolento" },
 	{ src: "/dailyCare/alergies.png", type: "purulento" },
+];
+
+export const woundAspectsTypes = [
+	{ src: "/woundCare/irritation.png", type: "Irritación" },
+	{ src: "/woundCare/redness.png", type: "Enrojecido" },
+	{ src: "/woundCare/yellow-pale.png", type: "Amarillo pálido" },
+	{ src: "/woundCare/necrotic.png", type: "Necrótico" },
+];
+
+export const secretionQualitiesTypes = [
+	{ src: "/woundCare/no-exudate.png", type: "Sin exudado" },
+	{ src: "/woundCare/serous.png", type: "Seroso" },
+	{ src: "/woundCare/cloudy.png", type: "Turbio" },
+	{ src: "/woundCare/purulent.png", type: "Purulento" },
+];
+
+export const surroundingSkinStatesTypes = [
+	{ src: "/woundCare/healthy.png", type: "Sana" },
+	{ src: "/woundCare/scaly.png", type: "Descamada" },
+	{ src: "/woundCare/erythematous.png", type: "Eritematosa" },
+	{ src: "/woundCare/macerated.png", type: "Macerada" },
 ];
