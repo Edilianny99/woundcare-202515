@@ -18,7 +18,8 @@ import ModalBandageChange from "./ModalBandageChange";
 import AlertDialogDischarge from "./AlertDialogDischarge";
 import ModalMedicine from "./ModalMedicine";
 import Loader from "@/components/Loader";
-import { BASE_URL } from "@/utils/variables";
+import { fetchAPIPDF } from "@/utils/api";
+import { toast } from "react-toastify";
 
 function MedicalFilePatient() {
 	const searchParams = useSearchParams();
@@ -40,6 +41,29 @@ function MedicalFilePatient() {
 		};
 		fetchMedicalFile();
 	}, [id]);
+
+	const downloadPdf = async (medicalFileId: number) => {
+		try {
+			const response = await fetchAPIPDF<BlobPart>(
+				`/medical-file/export-pdf/${medicalFileId}`,
+				"GET"
+			);
+
+			const file = new Blob([response], { type: "application/pdf" });
+			const link = document.createElement("a");
+
+			link.href = URL.createObjectURL(file);
+			link.download = `Historia_clinica_${medicalFileId}.pdf`;
+			link.click();
+
+			URL.revokeObjectURL(link.href);
+
+			toast.success("Historia clínica descargada correctamente");
+			return response;
+		} catch (error) {
+			toast.error("Error al descargar la historia clínica");
+		}
+	};
 
 	useEffect(() => {
 		const fetchPatientInfo = async () => {
@@ -153,16 +177,13 @@ function MedicalFilePatient() {
 							+ Asignar cambio de vendaje
 						</Button>
 					</Flex>
-					<a href={`${BASE_URL}/medical-file/export-pdf/1`} download>
-						Descargar PDF
-					</a>
-					{/* <Button
+					<Button
 						borderRadius="15px"
 						color="white"
 						bg={"#AD8EB1"}
 						fontSize={"14px"}
 						boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-						onClick={handleOpenModal}
+						onClick={() => downloadPdf(medicalFile?.id as number)}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +203,7 @@ function MedicalFilePatient() {
 							/>
 						</svg>
 						Descargar historia completa
-					</Button> */}
+					</Button>
 				</Flex>
 				<Flex w="100vw" h="13vh" align="center" pr="6vw" pl="6vw">
 					{patientInfo?.genre === "FEMALE" ? (
