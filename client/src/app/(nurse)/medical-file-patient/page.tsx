@@ -153,7 +153,7 @@ function MedicalFilePatient() {
 							+ Asignar cambio de vendaje
 						</Button>
 					</Flex>
-					<a href={`${BASE_URL}/medical-file/export-pdf/`} download>
+					<a href={`${BASE_URL}/medical-file/export-pdf/1`} download>
 						Descargar PDF
 					</a>
 					{/* <Button
