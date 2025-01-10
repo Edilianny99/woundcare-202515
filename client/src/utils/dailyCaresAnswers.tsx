@@ -7,6 +7,20 @@ type DailyCaresAnswers = {
 	secretionType: string;
 	hasCleanBandagesOn: string;
 	dailyDescription: string;
+	// Second Questionaire
+	secondQuestionaire: SecondQuestionaireAnswers | null;
+};
+
+export type SecondQuestionaireAnswers = {
+	woundAspect: string;
+	woundExtension: string;
+	woundDepth: string;
+	secretionQuality: string;
+	secretionQuantity: string;
+	necroticTissue: string;
+	granulationTissue: string;
+	edemaLevel: string;
+	surroundingSkin: string;
 };
 
 // TODO: Acomodar mensaje enviado al doctor
