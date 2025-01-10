@@ -5,14 +5,13 @@ import {
 	necroticTissueTypes,
 	secretionQualitiesTypes,
 	secretionQuantityTypes,
-	secretionTypes,
 	surroundingSkinStatesTypes,
 	woundAspectsTypes,
 	woundDepthTypes,
 	woundExtensionTypes,
 } from "./wound-evolution-questionaire";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SecondQuestionaireAnswers } from "@/utils/dailyCaresAnswers";
 
 interface Props {
@@ -32,7 +31,7 @@ export function MoreDetailsForm({
 	const [edemaLevel, setEdemaLevel] = useState<string>("");
 	const [surroundingSkin, setSurrodingSkin] = useState<string>("");
 
-	function updateSecondQuestionaire() {
+	const updateSecondQuestionaire = useCallback(() => {
 		setSecondQuestionaire({
 			edemaLevel,
 			granulationTissue,
@@ -44,7 +43,22 @@ export function MoreDetailsForm({
 			woundExtension,
 			secretionQuality,
 		});
-	}
+	}, [
+		setSecondQuestionaire,
+		edemaLevel,
+		granulationTissue,
+		necroticTissue,
+		secretionQuantity,
+		surroundingSkin,
+		woundAspect,
+		woundDepth,
+		woundExtension,
+		secretionQuality,
+	]);
+
+	useEffect(() => {
+		updateSecondQuestionaire();
+	}, [updateSecondQuestionaire]);
 
 	return (
 		<>
@@ -468,6 +482,7 @@ export function MoreDetailsForm({
 							}}
 							onClick={() => {
 								setSurrodingSkin(item.type);
+								updateSecondQuestionaire();
 							}}
 						/>
 					))}

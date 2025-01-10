@@ -73,6 +73,20 @@ function DailyCares() {
 	const canSubmit =
 		allAnswersProvided && (uploadPhoto ? allFilesUploaded : true);
 
+	function needsAssessment() {
+		let counter = 0;
+
+		if (painValue > 5) counter++;
+		if (swellingRedness === "true") counter++;
+		if (hasFever === "true") counter++;
+		if (chillsShaking === "true") counter++;
+		if (hasSecretion === "true") counter++;
+
+		return counter >= 3;
+	}
+
+	const needs2ndQuestionaire = needsAssessment();
+
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (!event.target.files) return;
 		const selectedFiles = event.target.files[0];
@@ -132,6 +146,46 @@ function DailyCares() {
 					{ key: "daily-description", answer: dailyDescription },
 				],
 			};
+			if (needs2ndQuestionaire && secondQuestionaire) {
+				payload.questionaire.push(
+					{
+						key: "wound-aspect",
+						answer: secondQuestionaire.woundAspect,
+					},
+					{
+						key: "wound-extension",
+						answer: secondQuestionaire.woundExtension,
+					},
+					{
+						key: "wound-depth",
+						answer: secondQuestionaire.woundDepth,
+					},
+					{
+						key: "secretion-quality",
+						answer: secondQuestionaire.secretionQuality,
+					},
+					{
+						key: "secretion-quantity",
+						answer: secondQuestionaire.secretionQuantity,
+					},
+					{
+						key: "necrotic-tissue",
+						answer: secondQuestionaire.necroticTissue,
+					},
+					{
+						key: "granulation-tissue",
+						answer: secondQuestionaire.granulationTissue,
+					},
+					{
+						key: "edema-level",
+						answer: secondQuestionaire.edemaLevel,
+					},
+					{
+						key: "surrounding-skin",
+						answer: secondQuestionaire.surroundingSkin,
+					}
+				);
+			}
 			await createWoundEvolution(payload);
 			toast.success("Formulario enviado correctamente");
 			router.push(routes.patientHomePage);
@@ -266,8 +320,8 @@ function DailyCares() {
 							step={1}
 							value={painValue}
 							onChange={(value) => {
-							setPainValue(value);
-						}}
+								setPainValue(value);
+							}}
 						/>
 					</Box>
 				</Flex>
@@ -481,7 +535,7 @@ function DailyCares() {
 					/>
 				</Flex>
 				<Box w="100%" h="2px" bg="#AD8EB1" />
-				{/* NOTE: Tiene algún tipo de secreción (pus o sangre) en la herida */}
+				{/* NOTE: Descripcion de Cuidado */}
 				<Flex w="100%" mb="20px" mt="20px" direction="row" justify="center">
 					<Box display="flex" flexDirection="column" justifyContent="center">
 						<Text fontWeight="bold" color="#3B3B3B" fontSize="16px" w="60vw">
@@ -499,7 +553,9 @@ function DailyCares() {
 				</Flex>
 				<Box w="100%" h="2px" bg="#AD8EB1" />
 				{/* NOTE: More Details Form */}
-				<MoreDetailsForm changeSecondQuestionaire={setSecondQuestionaire} />
+				{needs2ndQuestionaire && (
+					<MoreDetailsForm changeSecondQuestionaire={setSecondQuestionaire} />
+				)}
 				{/* NOTE: Submit */}
 				<Button
 					w="80vw"
