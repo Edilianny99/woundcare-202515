@@ -27,10 +27,10 @@ export type QuestionaireAnswer = {
 
 // TODO: Actualizar imagenes de tipo de secrecion
 export const secretionTypes = [
-	{ src: "/dailyCare/alergies.png", type: "seroso" },
-	{ src: "/dailyCare/alergies.png", type: "sanguinolento" },
-	{ src: "/dailyCare/alergies.png", type: "serosanguinolento" },
-	{ src: "/dailyCare/alergies.png", type: "purulento" },
+	{ src: "/dailyCare/seroso.png", type: "seroso" },
+	{ src: "/dailyCare/sanguinolento.png", type: "sanguinolento" },
+	{ src: "/dailyCare/serosanguinolento.png", type: "serosanguinolento" },
+	{ src: "/dailyCare/purulento.png", type: "purulento" },
 ];
 
 // NOTE: Second Questionaire
