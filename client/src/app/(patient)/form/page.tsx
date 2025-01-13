@@ -112,7 +112,7 @@ function WoundCareForm() {
 				<Flex w="65vw" direction="column" align="flex-end" justify="center">
 					<Heading
 						fontWeight="bold"
-						color="#4F1964"
+						color="#033e5c"
 						fontSize="30px"
 						mt="6vh"
 						mb="1vh"
@@ -120,7 +120,7 @@ function WoundCareForm() {
 					>
 						Cuidados diarios
 					</Heading>
-					<Box w="55vw" h="2px" bg="#AD8EB1" />
+					<Box w="55vw" h="2px" bg="#419ebd" />
 				</Flex>
 			</Flex>
 			<Flex
@@ -133,7 +133,7 @@ function WoundCareForm() {
 			>
 				{/* Campo 1: Foto */}
 				<Box w="100%" py={4} borderBottom="1px solid #E2E8F0">
-					<Text fontWeight="bold" fontSize="16px" color="#4F1964" mb={2}>
+					<Text fontWeight="bold" fontSize="16px" color="#033e5c" mb={2}>
 						Tome una foto actual de su herida:
 					</Text>
 
@@ -141,7 +141,7 @@ function WoundCareForm() {
 					<label htmlFor="file-upload">
 						<Flex
 							as="button"
-							bg="#4F1964"
+							bg="#033e5c"
 							color="white"
 							w="100%"
 							h="50px"
@@ -186,7 +186,7 @@ function WoundCareForm() {
 					</Flex>
 				</Box>
 
-				<Box w="100%" h="2px" bg="#AD8EB1" mt={4} />
+				<Box w="100%" h="2px" bg="#419ebd" mt={4} />
 
 				{/* Campo 2: Escala EVA */}
 				<Text fontWeight="bold" mt={4}>
@@ -206,7 +206,7 @@ function WoundCareForm() {
 				</Slider>
 				<Text>Dolor actual: {painLevel}</Text>
 
-				<Box w="100%" h="2px" bg="#AD8EB1" mt={4} />
+				<Box w="100%" h="2px" bg="#419ebd" mt={4} />
 				{/* Campo 3: Hinchazón */}
 				<Text fontWeight="bold" mt={4}>
 					¿Hay hinchazón o enrojecimiento?
@@ -220,7 +220,7 @@ function WoundCareForm() {
 					</Radio>
 				</RadioGroup>
 
-				<Box w="100%" h="2px" bg="#AD8EB1" mt={4} />
+				<Box w="100%" h="2px" bg="#419ebd" mt={4} />
 				{/* Campo 4: Fiebre */}
 				<Text fontWeight="bold" mt={4}>
 					¿Tiene fiebre o ha notado un aumento de temperatura?
@@ -234,7 +234,7 @@ function WoundCareForm() {
 					</Radio>
 				</RadioGroup>
 
-				<Box w="100%" h="2px" bg="#AD8EB1" mt={4} />
+				<Box w="100%" h="2px" bg="#419ebd" mt={4} />
 				{/* Campo 5: Escalofríos */}
 				<Text fontWeight="bold" mt={4}>
 					¿Siente escalofríos o temblores?
@@ -248,7 +248,7 @@ function WoundCareForm() {
 					</Radio>
 				</RadioGroup>
 
-				<Box w="100%" h="2px" bg="#AD8EB1" mt={4} />
+				<Box w="100%" h="2px" bg="#419ebd" mt={4} />
 
 				{/* Campo 6: Secreción */}
 				<Flex direction="column" align="center" p={4}>
@@ -268,7 +268,7 @@ function WoundCareForm() {
 					<Modal isOpen={isOpen} onClose={onClose} isCentered>
 						<ModalOverlay />
 						<ModalContent>
-							<ModalHeader textAlign="center" fontWeight="bold" color="#4F1964">
+							<ModalHeader textAlign="center" fontWeight="bold" color="#033e5c">
 								Seleccione el tipo de secreción
 							</ModalHeader>
 							<ModalBody>
@@ -351,7 +351,7 @@ function WoundCareForm() {
 						<Box mt={4} p={4} bg="#F2F2F2" borderRadius="md">
 							<Text>
 								Tipo de secreción seleccionado:{" "}
-								<Text as="span" fontWeight="bold" color="#4F1964">
+								<Text as="span" fontWeight="bold" color="#033e5c">
 									{secretionType}
 								</Text>
 							</Text>
@@ -359,7 +359,7 @@ function WoundCareForm() {
 					)}
 				</Flex>
 
-				<Box w="100%" h="2px" bg="#AD8EB1" mt={4} />
+				<Box w="100%" h="2px" bg="#419ebd" mt={4} />
 
 				{/* Campo 7: Vendaje */}
 				<Text fontWeight="bold" mt={4}>
@@ -374,7 +374,7 @@ function WoundCareForm() {
 					</Radio>
 				</RadioGroup>
 
-				<Box w="100%" h="2px" bg="#AD8EB1" mt={4} />
+				<Box w="100%" h="2px" bg="#419ebd" mt={4} />
 
 				{/* Campo 8: Comentarios */}
 				<Text fontWeight="bold" mt={4}>

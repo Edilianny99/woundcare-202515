@@ -62,7 +62,7 @@ export function MoreDetailsForm({
 
 	return (
 		<>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Aspecto de la Herida */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -90,7 +90,7 @@ export function MoreDetailsForm({
 								border:
 									woundAspect === item.type
 										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #ad8eb1",
+										: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								textAlign: "center",
@@ -111,7 +111,7 @@ export function MoreDetailsForm({
 					))}
 				</Grid>
 			</Box>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Extensión de la herida (cm) */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -139,7 +139,7 @@ export function MoreDetailsForm({
 								border:
 									woundExtension === item.type
 										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #ad8eb1",
+										: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								textAlign: "center",
@@ -160,7 +160,7 @@ export function MoreDetailsForm({
 					))}
 				</Grid>
 			</Box>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Profundidad de la herida (cm) */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -188,7 +188,7 @@ export function MoreDetailsForm({
 								border:
 									woundDepth === item.type
 										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #ad8eb1",
+										: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								textAlign: "center",
@@ -209,7 +209,7 @@ export function MoreDetailsForm({
 					))}
 				</Grid>
 			</Box>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Calidad de la secreción */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -239,7 +239,7 @@ export function MoreDetailsForm({
 								border:
 									secretionQuality === item.type
 										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #ad8eb1",
+										: "0.25rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.25rem",
 								opacity: secretionQuality === item.type ? 1 : 0.6,
@@ -252,7 +252,7 @@ export function MoreDetailsForm({
 					))}
 				</Grid>
 			</Box>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Cantidad de la secreción */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -280,7 +280,7 @@ export function MoreDetailsForm({
 								border:
 									secretionQuantity === item.type
 										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #ad8eb1",
+										: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								display: "flex",
@@ -302,7 +302,7 @@ export function MoreDetailsForm({
 					))}
 				</Grid>
 			</Box>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Nivel de tejido necrótico */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -332,7 +332,7 @@ export function MoreDetailsForm({
 								border:
 									necroticTissue === item.type
 										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #ad8eb1",
+										: "0.25rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.25rem",
 								opacity: necroticTissue === item.type ? 1 : 0.6,
@@ -345,7 +345,7 @@ export function MoreDetailsForm({
 					))}
 				</Grid>
 			</Box>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Nivel de tejido de granulación */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -373,7 +373,7 @@ export function MoreDetailsForm({
 								border:
 									granulationTissue === item.type
 										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #ad8eb1",
+										: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								display: "flex",
@@ -395,7 +395,7 @@ export function MoreDetailsForm({
 					))}
 				</Grid>
 			</Box>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Nivel de edema */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -423,7 +423,7 @@ export function MoreDetailsForm({
 								border:
 									edemaLevel === item.type
 										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #ad8eb1",
+										: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								display: "flex",
@@ -444,7 +444,7 @@ export function MoreDetailsForm({
 					))}
 				</Grid>
 			</Box>
-			<Box w="100%" h="2px" bg="#AD8EB1" />
+			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Estado de la piel circundante */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
@@ -472,7 +472,7 @@ export function MoreDetailsForm({
 								border:
 									surroundingSkin === item.type
 										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #ad8eb1",
+										: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								display: "flex",

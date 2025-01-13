@@ -133,13 +133,13 @@ function MedicalFilePatient() {
 				>
 					<Heading
 						as="h1"
-						color="#4F1964"
-						borderBottom={"2px solid #AD8EB1"}
+						color="#033e5c"
+						borderBottom={"2px solid #419ebd"}
 						paddingX="10px"
 					>
 						Historia Clínica
 					</Heading>
-					<Text color="#4F1964" marginTop={"4px"}>
+					<Text color="#033e5c" marginTop={"4px"}>
 						{/* Nº Historia: {medicalFile?.id} */}
 					</Text>
 					<Flex
@@ -151,7 +151,7 @@ function MedicalFilePatient() {
 						<Button
 							borderRadius="15px"
 							color="white"
-							bg={"#AD8EB1"}
+							bg={"#419ebd"}
 							fontSize={"14px"}
 							mr={"10px"}
 							boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
@@ -169,7 +169,7 @@ function MedicalFilePatient() {
 						<Button
 							borderRadius="15px"
 							color="white"
-							bg={"#AD8EB1"}
+							bg={"#419ebd"}
 							fontSize={"14px"}
 							boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
 							onClick={handleOpenModal}
@@ -180,7 +180,7 @@ function MedicalFilePatient() {
 					<Button
 						borderRadius="15px"
 						color="white"
-						bg={"#AD8EB1"}
+						bg={"#419ebd"}
 						fontSize={"14px"}
 						boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
 						onClick={() => downloadPdf(medicalFile?.id as number)}
@@ -226,7 +226,7 @@ function MedicalFilePatient() {
 						as="h2"
 						fontSize="x-large"
 						fontWeight="bold"
-						color="#4F1964"
+						color="#033e5c"
 						ml="10px"
 					>
 						{patientInfo?.user.fullname}

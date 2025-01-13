@@ -7,38 +7,38 @@ import { logout } from "@/store/authSlice";
 import { useRouter } from "next/navigation";
 
 function NavBarNurse() {
-  const dispatch = useAppDispatch();
-  const router = useRouter();
+	const dispatch = useAppDispatch();
+	const router = useRouter();
 
-  return (
-    <>
-      <Flex
-        w="100vw"
-        h="60px"
-        align="flex-end"
-        justify="space-between"
-        p="10px"
-        pl="20px"
-        pr="20px"
-        bg="#4F1964"
-      >
-        <Heading as="h1" fontWeight="bold" color="white" fontSize="28px">
-          WoundCare
-        </Heading>
-        <Image
-          src="/logout.png"
-          alt="Logout"
-          width={35}
-          height={25}
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            dispatch(logout());
-            router.push("/login");
-          }}
-        />
-      </Flex>
-    </>
-  );
+	return (
+		<>
+			<Flex
+				w="100vw"
+				h="60px"
+				align="flex-end"
+				justify="space-between"
+				p="10px"
+				pl="20px"
+				pr="20px"
+				bg="#033e5c"
+			>
+				<Heading as="h1" fontWeight="bold" color="white" fontSize="28px">
+					WoundCare
+				</Heading>
+				<Image
+					src="/logout.png"
+					alt="Logout"
+					width={35}
+					height={25}
+					style={{ cursor: "pointer" }}
+					onClick={() => {
+						dispatch(logout());
+						router.push("/login");
+					}}
+				/>
+			</Flex>
+		</>
+	);
 }
 
 export default NavBarNurse;

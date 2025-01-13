@@ -203,7 +203,7 @@ function DailyCares() {
 				<Flex w="65vw" direction="column" align="flex-end" justify="center">
 					<Heading
 						fontWeight="bold"
-						color="#4F1964"
+						color="#033e5c"
 						fontSize="30px"
 						mt="6vh"
 						mb="1vh"
@@ -211,7 +211,7 @@ function DailyCares() {
 					>
 						Cuidados diarios
 					</Heading>
-					<Box w="55vw" h="2px" bg="#AD8EB1" />
+					<Box w="55vw" h="2px" bg="#419ebd" />
 				</Flex>
 			</Flex>
 			<Flex
@@ -247,7 +247,7 @@ function DailyCares() {
 						style={{
 							display: "flex",
 							marginTop: "20px",
-							backgroundColor: "#AD8EB1",
+							backgroundColor: "#419ebd",
 							width: "80vw",
 							height: "20vh",
 							borderRadius: "1rem",
@@ -295,7 +295,7 @@ function DailyCares() {
 						</Box>
 					))}
 				</Box>
-				<Box w="100%" h="2px" bg="#AD8EB1" />
+				<Box w="100%" h="2px" bg="#419ebd" />
 				{/* NOTE: ¿Tiene dolor en la herida? */}
 				<Flex
 					w="100%"
@@ -325,7 +325,7 @@ function DailyCares() {
 						/>
 					</Box>
 				</Flex>
-				<Box w="100%" h="2px" bg="#AD8EB1" />
+				<Box w="100%" h="2px" bg="#419ebd" />
 				{/* NOTE: ¿Tiene hinchazón o enrojecimiento en el área de la herida? */}
 				<Flex
 					w="100%"
@@ -358,7 +358,7 @@ function DailyCares() {
 						height={105}
 					/>
 				</Flex>
-				<Box w="100%" h="2px" bg="#AD8EB1" />
+				<Box w="100%" h="2px" bg="#419ebd" />
 				{/* NOTE: ¿Tiene fiebre o ha notado un aumento de la temperatura corporal? */}
 				<Flex
 					w="100%"
@@ -391,7 +391,7 @@ function DailyCares() {
 						</RadioGroup>
 					</Box>
 				</Flex>
-				<Box w="100%" h="2px" bg="#AD8EB1" />
+				<Box w="100%" h="2px" bg="#419ebd" />
 				{/* NOTE: ¿Siente escalofríos o temblores? */}
 				<Flex
 					w="100%"
@@ -424,7 +424,7 @@ function DailyCares() {
 						height={105}
 					/>
 				</Flex>
-				<Box w="100%" h="2px" bg="#AD8EB1" />
+				<Box w="100%" h="2px" bg="#419ebd" />
 				{/* NOTE: Tiene algún tipo de secreción (pus o sangre) en la herida */}
 				<Flex
 					w="100%"
@@ -487,7 +487,7 @@ function DailyCares() {
 										border:
 											secretionType === item.type
 												? "0.25rem solid #7f5ad4"
-												: "0.25rem solid #ad8eb1",
+												: "0.25rem solid #419ebd",
 										borderRadius: "1rem",
 										padding: "0.25rem",
 										opacity: secretionType === item.type ? 1 : 0.6,
@@ -500,7 +500,7 @@ function DailyCares() {
 						</Grid>
 					</Box>
 				)}
-				<Box w="100%" h="2px" bg="#AD8EB1" />
+				<Box w="100%" h="2px" bg="#419ebd" />
 				{/* TODO: Imagen de Vendaje */}
 				{/* NOTE: ¿El vendaje está en su lugar y limpio? */}
 				<Flex
@@ -534,7 +534,7 @@ function DailyCares() {
 						height={105}
 					/>
 				</Flex>
-				<Box w="100%" h="2px" bg="#AD8EB1" />
+				<Box w="100%" h="2px" bg="#419ebd" />
 				{/* NOTE: Descripcion de Cuidado */}
 				<Flex w="100%" mb="20px" mt="20px" direction="row" justify="center">
 					<Box display="flex" flexDirection="column" justifyContent="center">
@@ -544,14 +544,14 @@ function DailyCares() {
 						<Textarea
 							placeholder="Ingrese una descripción adicional de su cuidado de ser necesario..."
 							value={dailyDescription}
-							borderColor={"#ad8eb1"}
+							borderColor={"#419ebd"}
 							onChange={(event) => {
 								setDailyDescription(event.target.value);
 							}}
 						/>
 					</Box>
 				</Flex>
-				<Box w="100%" h="2px" bg="#AD8EB1" />
+				<Box w="100%" h="2px" bg="#419ebd" />
 				{/* NOTE: More Details Form */}
 				{needs2ndQuestionaire && (
 					<MoreDetailsForm changeSecondQuestionaire={setSecondQuestionaire} />
@@ -560,7 +560,7 @@ function DailyCares() {
 				<Button
 					w="80vw"
 					h="6vh"
-					bg="#4F1964"
+					bg="#033e5c"
 					borderRadius="15px"
 					mt="20px"
 					color="white"
