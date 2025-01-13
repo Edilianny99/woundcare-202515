@@ -275,6 +275,8 @@ export class MedicalFileService {
       },
     });
 
+    console.log(medicalFile);
+
     if (!medicalFile) {
       throw new HttpException(
         "this medical file doesn't exists",
@@ -314,11 +316,8 @@ export class MedicalFileService {
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
     const template = Handlebars.compile(htmlContent);
     const filledHtml = template(medFile);
-    const browser = await puppeteer.launch({
-      executablePath: '/usr/bin/chromium-browser',
-      args: ['--no-sandbox'],
-    });
-    const page = await browser.newPage();
+    const browser = await puppeteer.launch();
+        const page = await browser.newPage();
     await page.setContent(filledHtml);
 
     const pdfBuffer = Buffer.from(await page.pdf({

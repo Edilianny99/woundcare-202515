@@ -140,6 +140,16 @@
                 <p><strong>Género:</strong> {{patient.genre}}</p>
                 <p><strong>Dirección:</strong> {{patient.address}}</p>
                 <p><strong>Enfermero responsable:</strong> {{nurse.user.fullname}}</p>
+                <p><strong>Alergias:</strong>
+                    {{#if (eq this.patient.allergies.length 0)}}
+                        No tiene
+                        {{else}}
+                    {{#each this.patient.allergies}}
+                        {{this}}
+                    {{/each}}
+                    {{/if}}
+
+                </p>
             </div>
 
             {{#each WoundEvolution}}

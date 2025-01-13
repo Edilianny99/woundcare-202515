@@ -96,6 +96,7 @@ export function MoreDetailsForm({
 								textAlign: "center",
 								display: "flex",
 								placeItems: "center",
+								justifyContent: "center",
 								color: woundAspect === item.type ? "#fff" : "#000",
 								userSelect: "none",
 								backgroundColor: woundAspect === item.type ? "#7f5ad4" : "#fff",
