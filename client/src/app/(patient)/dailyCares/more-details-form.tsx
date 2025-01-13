@@ -64,6 +64,7 @@ export function MoreDetailsForm({
 		<>
 			<Box w="100%" h="2px" bg="#419ebd" />
 			{/* NOTE: Aspecto de la Herida */}
+			{/* TO DO: Agregar condicional para el formulario de si tiene tejido necrotico */}
 			<Box display="flex" flexDirection="column" justifyContent="center">
 				<Text
 					fontWeight="bold"
