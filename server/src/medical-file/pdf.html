@@ -148,7 +148,14 @@
                         {{this}}
                     {{/each}}
                     {{/if}}
-
+                <p><strong>Antecedentes médicos:</strong>
+                    {{#if (eq this.patient.medicalRecords.length 0)}}
+                    No tiene antecedentes
+                    {{else}}
+                {{#each this.patient.medicalRecords}}
+                    {{this}}
+                {{/each}}
+                {{/if}}
                 </p>
             </div>
 
