@@ -105,7 +105,7 @@ export function MoreDetailsForm({
 								updateSecondQuestionaire();
 							}}
 						>
-							{item.type} ({item.text})
+							{item.type}
 						</Box>
 					))}
 				</Grid>
@@ -320,27 +320,33 @@ export function MoreDetailsForm({
 					placeItems={"center"}
 				>
 					{necroticTissueTypes.map((item, index) => (
-						<Image
+						<Box
 							key={index}
-							src={item.src}
-							alt={`secretion type ${item.type}`}
-							width={105}
-							height={105}
 							style={{
+								width: "7rem",
+								aspectRatio: "1/1",
 								cursor: "pointer",
 								border:
 									necroticTissue === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #ad8eb1",
+										? "0.1rem solid #7f5ad4"
+										: "0.1rem solid #ad8eb1",
 								borderRadius: "1rem",
-								padding: "0.25rem",
-								opacity: necroticTissue === item.type ? 1 : 0.6,
+								padding: "0.5rem",
+								textAlign: "center",
+								display: "flex",
+								placeItems: "center",
+								color: necroticTissue === item.type ? "#fff" : "#000",
+								userSelect: "none",
+								backgroundColor:
+									necroticTissue === item.type ? "#7f5ad4" : "#fff",
 							}}
 							onClick={() => {
-								setNecroticTissue(item.type);
+								setWoundAspect(item.type);
 								updateSecondQuestionaire();
 							}}
-						/>
+						>
+							{item.type}
+						</Box>
 					))}
 				</Grid>
 			</Box>

@@ -36,10 +36,10 @@ export const secretionTypes = [
 // NOTE: Second Questionaire
 
 export const woundAspectsTypes = [
-	{ src: "/woundCare/irritation.png", type: "Irritación", value: 1 },
-	{ src: "/woundCare/redness.png", type: "Enrojecido", value: 2 },
-	{ src: "/woundCare/yellow-pale.png", type: "Amarillo pálido", value: 3 },
-	{ src: "/woundCare/necrotic.png", type: "Necrótico", value: 4 },
+	{ text: "", type: "Irritación", value: 1 },
+	{ text: "", type: "Enrojecido", value: 2 },
+	{ text: "", type: "Amarillo pálido", value: 3 },
+	{ text: "", type: "Necrótico", value: 4 },
 ];
 
 export const woundExtensionTypes = [
