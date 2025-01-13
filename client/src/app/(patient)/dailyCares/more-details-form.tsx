@@ -80,7 +80,7 @@ export function MoreDetailsForm({
 					mb="20px"
 					placeItems={"center"}
 				>
-					{woundExtensionTypes.map((item, index) => (
+					{woundAspectsTypes.map((item, index) => (
 						<Box
 							key={index}
 							style={{
