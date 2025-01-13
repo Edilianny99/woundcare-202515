@@ -338,7 +338,7 @@ export function MoreDetailsForm({
 								opacity: necroticTissue === item.type ? 1 : 0.6,
 							}}
 							onClick={() => {
-								setSecretionQuality(item.type);
+								setNecroticTissue(item.type);
 								updateSecondQuestionaire();
 							}}
 						/>
