@@ -57,10 +57,10 @@ export const woundDepthTypes = [
 ];
 
 export const secretionQualitiesTypes = [
-	{ src: "/woundCare/sin-exudado.png", type: "Sin exudado", value: 1 },
-	{ src: "/woundCare/seroso.png", type: "Seroso", value: 2 },
-	{ src: "/woundCare/turbio.png", type: "Turbio", value: 3 },
-	{ src: "/woundCare/purulento.png", type: "Purulento", value: 4 },
+	{ src: "/dailyCare/sin-exudado.png", type: "Sin exudado", value: 1 },
+	{ src: "/dailyCare/seroso.png", type: "Seroso", value: 2 },
+	{ src: "/dailyCare/turbio.png", type: "Turbio", value: 3 },
+	{ src: "/dailyCare/purulento.png", type: "Purulento", value: 4 },
 ];
 
 export const secretionQuantityTypes = [
@@ -71,10 +71,18 @@ export const secretionQuantityTypes = [
 ];
 
 export const necroticTissueTypes = [
-	{ type: "Necrosis Leve", text: "", value: 1 },
-	{ type: "Necrosis Moderada", text: "", value: 2 },
-	{ type: "Necrosis Severa", text: "", value: 3 },
-	{ type: "Necrosis Muy Severa", text: "", value: 4 },
+	{ type: "Necrosis Leve", src: "/dailyCare/necrosis-leve.png", value: 1 },
+	{
+		type: "Necrosis Moderada",
+		src: "/dailyCare/necrosis-moderada.png",
+		value: 2,
+	},
+	{ type: "Necrosis Severa", src: "/dailyCare/necrosis-severa.png", value: 3 },
+	{
+		type: "Necrosis Muy Severa",
+		src: "/dailyCare/necrosis-muy-severa.png",
+		value: 4,
+	},
 ];
 
 export const granulationTissueTypes = [
