@@ -67,14 +67,14 @@ function Login() {
 			minHeight="100vh"
 		>
 			<Image
-				src={"/login/purpleTop.png"}
-				alt="purple decoration"
+				src={"/login/blueTop.png"}
+				alt="blue decoration"
 				width={60}
 				height={60}
 				style={{ marginBottom: "-40px" }}
 			></Image>
 			<Image
-				src={"/login/purpleStars.png"}
+				src={"/login/blueStars.png"}
 				alt="WoundCare Image"
 				width={71}
 				height={61}
@@ -84,7 +84,7 @@ function Login() {
 				Bienvenido a WoundCare
 			</Heading>
 			<Image
-				src={"/login/purpleStars.png"}
+				src={"/login/blueStars.png"}
 				alt="WoundCare Image"
 				width={71}
 				height={61}
@@ -190,8 +190,8 @@ function Login() {
 					<label style={{ display: "flex", alignItems: "center", gap: "8px" }}>
 						<Checkbox
 							id="acceptTerms"
-							borderColor={"#805ad5"}
-							colorScheme="purple"
+							borderColor={"#419ebd"}
+							color="#033e5c"
 							onChange={() => setAcceptTerms(!acceptTerms)}
 						></Checkbox>
 						<Text
@@ -222,19 +222,19 @@ function Login() {
 					width="80%"
 					height="55px"
 					border="none"
-					bgColor="purple"
+					bgColor="#419ebd"
 					color="white"
 					isDisabled={!acceptTerms || !nationalId || !password}
 					isLoading={loading}
-					_hover={{ bgColor: "#4f1c63" }}
+					_hover={{ bgColor: "#419ebd95" }}
 					type="submit"
 				>
 					Ingresar
 				</Button>
 			</Box>
 			<Image
-				src={"/login/purpleBottom.png"}
-				alt="purple decoration"
+				src={"/login/blueBottom.png"}
+				alt="blue decoration"
 				style={{ alignSelf: "flex-end" }}
 				width={60}
 				height={60}
