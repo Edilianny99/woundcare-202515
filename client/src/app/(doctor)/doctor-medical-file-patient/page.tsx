@@ -30,7 +30,7 @@ function DoctorMedicalFilePatient() {
 			}
 		};
 		fetchMedicalFile();
-	}, []);
+	}, [id]);
 
 	useEffect(() => {
 		const fetchPatientInfo = async () => {
@@ -40,7 +40,7 @@ function DoctorMedicalFilePatient() {
 			}
 		};
 		fetchPatientInfo();
-	}, []);
+	}, [id]);
 
 	const calculateAge = (birthDate: string) => {
 		const dob = new Date(birthDate);
@@ -79,7 +79,7 @@ function DoctorMedicalFilePatient() {
 						borderBottom={"2px solid #419ebd"}
 						paddingX="10px"
 					>
-						Historia Clínica
+						Información del Paciente
 					</Heading>
 					<Text color="#033e5c" marginTop={"4px"}>
 						Nº Historia: {medicalFile?.id}
