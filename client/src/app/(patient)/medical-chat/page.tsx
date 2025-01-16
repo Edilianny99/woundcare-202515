@@ -106,12 +106,8 @@ function MedicalChat() {
 		});
 
 		return () => {
-			socket.off("connect", () => {
-				console.log("Cleaning");
-			});
-			socket.off("disconnect", () => {
-				console.log("Cleaning");
-			});
+			socket.off("connect", () => {});
+			socket.off("disconnect", () => {});
 			socket.off("on-message");
 		};
 	}, [conversation]);

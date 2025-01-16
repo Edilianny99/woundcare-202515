@@ -12,7 +12,7 @@ import routes from "@/utils/routes";
 import { Box, Flex, Heading, Input } from "@chakra-ui/react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { toast } from "react-toastify";
 
@@ -35,7 +35,7 @@ function MedicalConversation() {
 		},
 	});
 
-	const fetchConversation = async () => {
+	const fetchConversation = useCallback(async () => {
 		try {
 			const conversation = await getConversation(id);
 			setConversation(conversation);
@@ -46,39 +46,42 @@ function MedicalConversation() {
 				toast.error("Ha ocurrido un error al cargar la conversación");
 			}
 		}
-	};
+	}, [id]);
 
-	const fetchMessages = async () => {
+	const fetchMessages = useCallback(async () => {
 		try {
 			const newMessages = await getMessages(id, page, 10);
-			setMessages([...messages, ...newMessages.items]);
+			setMessages((prevMessages) => [...prevMessages, ...newMessages.items]);
 			if (page === 1) setTotalMessages(newMessages.meta.totalItems);
-			setPage(page + 1);
+			setPage((prevPage) => prevPage + 1);
 		} catch (error) {
 			toast.error("Ha ocurrido un error al cargar los mensajes");
 		} finally {
 			setLoading(false);
 		}
-	};
+	}, [id, page]);
 
-	const addMessage = (data: any) => {
-		setMessages((prevMessages) => {
-			if (prevMessages.some((message) => message.id === data.message.id))
-				return prevMessages;
-			return [
-				{
-					text: data.message.text,
-					conversationId: data.message.conversationId,
-					createdAt: data.message.createdAt,
-					id: data.message.id,
-					owner: data.message.userId === conversation?.nurseId,
-					userId: data.message.userId,
-					image: data.message.image,
-				},
-				...prevMessages,
-			];
-		});
-	};
+	const addMessage = useCallback(
+		(data: any) => {
+			setMessages((prevMessages) => {
+				if (prevMessages.some((message) => message.id === data.message.id))
+					return prevMessages;
+				return [
+					{
+						text: data.message.text,
+						conversationId: data.message.conversationId,
+						createdAt: data.message.createdAt,
+						id: data.message.id,
+						owner: data.message.userId === conversation?.nurseId,
+						userId: data.message.userId,
+						image: data.message.image,
+					},
+					...prevMessages,
+				];
+			});
+		},
+		[conversation?.nurseId]
+	);
 
 	const sendMessage = () => {
 		socket.emit("send-message", {
@@ -110,19 +113,15 @@ function MedicalConversation() {
 		});
 
 		return () => {
-			socket.off("connect", () => {
-				console.log("Cleaning");
-			});
-			socket.off("disconnect", () => {
-				console.log("Cleaning");
-			});
+			socket.off("connect", () => {});
+			socket.off("disconnect", () => {});
 			socket.off("on-message");
 		};
-	}, [conversation]);
+	}, [addMessage, conversation, fetchConversation, id, socket, totalMessages]);
 
 	useEffect(() => {
 		if (inView || page === 1) fetchMessages();
-	}, [inView]);
+	}, [fetchMessages, inView, page]);
 
 	return loading ? (
 		<Box width={"100vw"} flexGrow={1} position={"relative"}>

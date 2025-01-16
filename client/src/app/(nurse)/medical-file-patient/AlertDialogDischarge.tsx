@@ -53,18 +53,19 @@ const AlertDialogDischarge: React.FC<AlertDialogDischargeProps> = ({
 	return (
 		<>
 			<Button
-				w="100%"
-				h="6vh"
+				w="fit-content"
+				h="2rem"
 				bg="#033e5c"
-				borderRadius="15px"
-				mt="20px"
+				px={8}
+				borderRadius="1rem"
 				color="white"
-				fontSize="24px"
-				fontWeight="bold"
-				boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+				fontSize="1.5rem"
+				fontWeight="700"
+				background={"#419ebd"}
+				boxShadow="0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25)"
 				onClick={onOpen}
 			>
-				Dar de alta
+				Dar de Alta
 			</Button>
 			<Modal isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />

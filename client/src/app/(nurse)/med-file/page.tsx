@@ -2,25 +2,37 @@
 import Arrow from "@/components/Arrow";
 import Loader from "@/components/Loader";
 import { fetchAPIPDF } from "@/utils/api";
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+	Accordion,
+	AccordionButton,
+	AccordionIcon,
+	AccordionItem,
+	AccordionPanel,
+	Box,
+	Button,
+	Flex,
+	Heading,
+	Text,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { MedicalFileBox } from "../medical-file-patient/medical-file-box";
 import { MedFileData } from "./med-file-data";
-import { getMedicalFileById } from "@/services/patient/patient.service";
 import {
-	TheMedicalFile,
+	CompleteMedicalFile,
 	ThePatientInfo,
 } from "@/interfaces/doctor/doctor.interface";
 import { getPatientInfo } from "@/services/doctor/doctor.service";
+import routes from "@/utils/routes";
+import { getCompleteMedFile } from "@/services/nurse/nurse.service";
+import { WoundEvolutionAccordion } from "./wound-evolution";
 
 function MedFile() {
 	const searchParams = useSearchParams();
 	const id = searchParams.get("id");
 	const [isLoading, setIsLoading] = useState(true);
-	const [medicalFile, setMedicalFile] = useState<TheMedicalFile>();
+	const [medicalFile, setMedicalFile] = useState<CompleteMedicalFile>();
 	const [patientInfo, setPatientInfo] = useState<ThePatientInfo>();
 
 	const downloadPdf = async (medicalFileId: number) => {
@@ -50,7 +62,7 @@ function MedFile() {
 
 	const fetchMedicalFile = async (medicalFileId: string) => {
 		try {
-			const response = await getMedicalFileById(medicalFileId);
+			const response = await getCompleteMedFile(medicalFileId);
 			setMedicalFile(response);
 		} catch (error) {
 			toast.error("Error al obtener la historia clínica");
@@ -82,7 +94,9 @@ function MedFile() {
 		</Box>
 	) : (
 		<Box as="main" flex={1}>
-			<Arrow />
+			<Arrow
+				goBackUrl={`${routes.nurseMedicalFilePatient}?id=${medicalFile?.patientId}`}
+			/>
 			<Flex
 				marginTop={-16}
 				marginRight={6}
@@ -183,7 +197,11 @@ function MedFile() {
 						boxShadow: "0rem 0.25rem 0.5rem #033e5c65",
 					}}
 				/>
-				<MedicalFileBox />
+				{medicalFile?.WoundEvolution && (
+					<WoundEvolutionAccordion
+						woundEvolution={medicalFile?.WoundEvolution}
+					/>
+				)}
 			</Box>
 		</Box>
 	);

@@ -3,7 +3,11 @@ import { Box, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 
-function Arrow() {
+interface Props {
+	goBackUrl?: string;
+}
+
+function Arrow({ goBackUrl }: Props) {
 	return (
 		<Box
 			w="18vh"
@@ -22,7 +26,7 @@ function Arrow() {
 				boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
 				justifyContent="center"
 			>
-				<Link href={routes.patientHomePage}>
+				<Link href={goBackUrl ? goBackUrl : routes.patientHomePage}>
 					<Image
 						src="/arrow.png"
 						alt="arrow"

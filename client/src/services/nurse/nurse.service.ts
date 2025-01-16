@@ -1,11 +1,13 @@
 import { ConversationListItem } from "@/interfaces/chat/conversation.interface";
 import { PaginatedResponse } from "@/interfaces/common/responses.interface";
+import { CompleteMedicalFile } from "@/interfaces/doctor/doctor.interface";
 import {
 	BandageChange,
 	Doctor,
 	MedicalFile,
 	Nurse,
 	Patient,
+	PatientInfoWithMedFiles,
 	Patients,
 	PrescriptionMedicine,
 	TheDoctor,
@@ -78,8 +80,23 @@ export const getPatientMedicalFile = async (nationalId: string) => {
 	);
 	return data;
 };
+export const getCompleteMedFile = async (medFileId: string) => {
+	const data = await fetchAPI<CompleteMedicalFile>(
+		`/medical-file/${medFileId}`,
+		"GET"
+	);
+	return data;
+};
 export const getPatientInfo = async (nationalId: string) => {
 	const data = await fetchAPI<ThePatientInfo>(`/patient/${nationalId}`, "GET");
+	return data;
+};
+
+export const getPatientInfoWithMedFile = async (nationalId: string) => {
+	const data = await fetchAPI<PatientInfoWithMedFiles>(
+		`/patient/${nationalId}`,
+		"GET"
+	);
 	return data;
 };
 export const createDoctor = async (doctor: TheDoctor) => {

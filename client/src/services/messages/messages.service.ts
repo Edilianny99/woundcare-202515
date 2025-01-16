@@ -24,6 +24,5 @@ export const createImageMessage = async (
 		"POST",
 		formData
 	);
-	console.log("Create image message: ", data);
 	return data;
 };

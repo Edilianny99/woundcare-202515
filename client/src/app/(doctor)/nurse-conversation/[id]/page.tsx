@@ -12,7 +12,7 @@ import routes from "@/utils/routes";
 import { Box, Flex, Heading, Input } from "@chakra-ui/react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { toast } from "react-toastify";
 
@@ -61,24 +61,27 @@ function NurseConversation() {
 		}
 	};
 
-	const addMessage = (data: any) => {
-		setMessages((prevMessages) => {
-			if (prevMessages.some((message) => message.id === data.message.id))
-				return prevMessages;
-			return [
-				{
-					text: data.message.text,
-					conversationId: data.message.conversationId,
-					createdAt: data.message.createdAt,
-					id: data.message.id,
-					owner: data.message.userId === conversation?.userId,
-					userId: data.message.userId,
-					image: data.message.image,
-				},
-				...prevMessages,
-			];
-		});
-	};
+	const addMessage = useCallback(
+		(data: any) => {
+			setMessages((prevMessages) => {
+				if (prevMessages.some((message) => message.id === data.message.id))
+					return prevMessages;
+				return [
+					{
+						text: data.message.text,
+						conversationId: data.message.conversationId,
+						createdAt: data.message.createdAt,
+						id: data.message.id,
+						owner: data.message.userId === conversation?.userId,
+						userId: data.message.userId,
+						image: data.message.image,
+					},
+					...prevMessages,
+				];
+			});
+		},
+		[conversation?.userId]
+	);
 
 	const sendMessage = () => {
 		socket.emit("send-message", {
@@ -110,19 +113,15 @@ function NurseConversation() {
 		});
 
 		return () => {
-			socket.off("connect", () => {
-				console.log("Cleaning");
-			});
-			socket.off("disconnect", () => {
-				console.log("Cleaning");
-			});
+			socket.off("connect", () => {});
+			socket.off("disconnect", () => {});
 			socket.off("on-message");
 		};
-	}, [conversation]);
+	}, [addMessage, conversation, fetchConversation, id, socket, totalMessages]);
 
 	useEffect(() => {
 		if (inView || page === 1) fetchMessages();
-	}, [inView]);
+	}, [fetchMessages, inView, page]);
 
 	return loading ? (
 		<Box width={"100vw"} flexGrow={1} position={"relative"}>

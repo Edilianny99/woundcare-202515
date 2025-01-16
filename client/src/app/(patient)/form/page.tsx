@@ -96,8 +96,6 @@ function WoundCareForm() {
 		};
 
 		try {
-			// Aquí iría la lógica de envío al backend
-			console.log(submissionData);
 			toast.success("Formulario enviado correctamente.");
 			router.push("/success-page");
 		} catch (error) {

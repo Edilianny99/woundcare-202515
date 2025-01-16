@@ -2,17 +2,10 @@ import { ThePatientInfo } from "@/interfaces/doctor/doctor.interface";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 interface Props {
-	patientInfo: ThePatientInfo | undefined;
-	medicalFileDate: string | undefined;
+	patientInfo: ThePatientInfo;
 }
 
-export function PersonalData({ patientInfo, medicalFileDate }: Props) {
-	const formatDate = (dateString: string | undefined) => {
-		if (!dateString) return "";
-		const date = new Date(dateString);
-		return date.toLocaleDateString("en-GB");
-	};
-
+export function PersonalData({ patientInfo }: Props) {
 	const calculateAge = (birthDate: string) => {
 		const dob = new Date(birthDate);
 		const today = new Date();
@@ -66,16 +59,16 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 					</Text>
 				</Flex>
 				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
-					<Text fontWeight={"bold"}>Tipo de Sangre:</Text>
-					<Text marginLeft={"0.25rem"}>{patientInfo?.bloodType}</Text>
+					<Text fontWeight={"bold"}>Peso:</Text>
+					<Text marginLeft={"0.25rem"}>{patientInfo?.weight}</Text>
 				</Flex>
 				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
 					<Text fontWeight={"bold"}>Altura:</Text>
 					<Text marginLeft={"0.25rem"}>{patientInfo?.height}</Text>
 				</Flex>
 				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
-					<Text fontWeight={"bold"}>Peso:</Text>
-					<Text marginLeft={"0.25rem"}>{patientInfo?.weight}</Text>
+					<Text fontWeight={"bold"}>Tipo de Sangre:</Text>
+					<Text marginLeft={"0.25rem"}>{patientInfo?.bloodType}</Text>
 				</Flex>
 				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
 					<Text fontWeight={"bold"}>Dirección:</Text>
@@ -88,10 +81,6 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 							? patientInfo.cellPhoneNumber
 							: patientInfo?.phoneNumber}
 					</Text>
-				</Flex>
-				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
-					<Text fontWeight={"bold"}>Fecha de ingreso:</Text>
-					<Text marginLeft={"0.25rem"}>{formatDate(medicalFileDate)}</Text>
 				</Flex>
 			</Box>
 			<hr
@@ -110,18 +99,14 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 				Alergias
 			</Text>
 			<Box padding={"0 0.5rem"}>
-				{patientInfo?.allergies ? (
-					patientInfo.allergies.length > 0 ? (
-						patientInfo.allergies.map((record, index) => (
-							<li key={index}>{record}</li>
-						))
-					) : (
-						<p style={{ fontSize: "0.75rem" }}>
-							No tiene ninguna alergia reconocida
-						</p>
-					)
+				{patientInfo.allergies.length > 0 ? (
+					patientInfo.allergies.map((record, index) => (
+						<li key={index}>{record}</li>
+					))
 				) : (
-					<p>No hay antecedentes médicos.</p>
+					<p style={{ fontSize: "0.75rem" }}>
+						No tiene ninguna alergia reconocida.
+					</p>
 				)}
 			</Box>
 			<hr
@@ -140,18 +125,14 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 				Enfermedades Existentes
 			</Text>
 			<Box padding={"0 0.5rem"}>
-				{patientInfo?.medicalRecords ? (
-					patientInfo?.medicalRecords.length > 0 ? (
-						patientInfo?.medicalRecords.map((record, index) => (
-							<li key={index}>{record}</li>
-						))
-					) : (
-						<p style={{ fontSize: "0.75rem" }}>
-							No tiene ninguna alergia reconocida
-						</p>
-					)
+				{patientInfo?.medicalRecords.length > 0 ? (
+					patientInfo?.medicalRecords.map((record, index) => (
+						<li key={index}>{record}</li>
+					))
 				) : (
-					<p>No hay antecedentes médicos.</p>
+					<p style={{ fontSize: "0.75rem" }}>
+						No se ha registrado ninguna enfermedad existente.
+					</p>
 				)}
 			</Box>
 		</Flex>

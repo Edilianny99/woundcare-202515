@@ -6,63 +6,46 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
 	Nurse,
-	TheMedicalFile,
-	ThePatientInfo,
+	PatientInfoWithMedFiles,
 } from "@/interfaces/nurse/nurse.interface";
 import {
 	getMe,
-	getPatientInfo,
-	getPatientMedicalFile,
+	getPatientInfoWithMedFile,
 } from "@/services/nurse/nurse.service";
 import ModalBandageChange from "./ModalBandageChange";
 import AlertDialogDischarge from "./AlertDialogDischarge";
 import ModalMedicine from "./ModalMedicine";
 import Loader from "@/components/Loader";
-import { fetchAPIPDF } from "@/utils/api";
-import { toast } from "react-toastify";
 import { PersonalData } from "./personal-data";
 import { MedicalFileBox } from "./medical-file-box";
+import routes from "@/utils/routes";
 
 function MedicalFilePatient() {
 	const [isLoading, setIsLoading] = useState(true);
 	const searchParams = useSearchParams();
 	const id = searchParams.get("id");
-	const [medicalFile, setMedicalFile] = useState<TheMedicalFile>();
-	const [patientInfo, setPatientInfo] = useState<ThePatientInfo>();
+	const [patientInfo, setPatientInfo] = useState<PatientInfoWithMedFiles>();
 	const [isOpen, setIsOpen] = useState(false);
 	const [isOpenM, setIsOpenM] = useState(false);
 	const [nurse, setNurse] = useState<Nurse>();
 
-	const fetchMedicalFile = useCallback(async () => {
+	const fetchPatientInfo = useCallback(async () => {
 		if (id !== null) {
-			const response = await getPatientMedicalFile(id);
-			setMedicalFile(response);
-			setIsLoading(false);
+			const response = await getPatientInfoWithMedFile(id);
+			setPatientInfo(response);
 		}
 	}, [id]);
 
-	useEffect(() => {
-		fetchMedicalFile();
-	}, [fetchMedicalFile]);
+	const fetchNurse = async () => {
+		const response = await getMe();
+		setNurse(response);
+	};
 
 	useEffect(() => {
-		const fetchPatientInfo = async () => {
-			if (id !== null) {
-				const response = await getPatientInfo(id);
-				setPatientInfo(response);
-			}
-		};
 		fetchPatientInfo();
-	}, [id]);
-
-	useEffect(() => {
-		const fetchNurse = async () => {
-			const response = await getMe();
-			setNurse(response);
-		};
-
 		fetchNurse();
-	}, []);
+		setIsLoading(false);
+	}, [fetchPatientInfo]);
 
 	const handleOpenModal = () => {
 		setIsOpen(true);
@@ -86,7 +69,7 @@ function MedicalFilePatient() {
 		</Box>
 	) : (
 		<Box as="main" flex={1}>
-			<Arrow />
+			<Arrow goBackUrl={routes.nursePatientsList} />
 			<Flex
 				marginTop={-16}
 				marginRight={6}
@@ -157,15 +140,18 @@ function MedicalFilePatient() {
 					/>
 				)}
 
-				<Heading
-					as="h2"
-					fontSize="1.5rem"
-					fontWeight="bold"
-					color="#033e5c"
-					ml="10px"
-				>
-					{patientInfo?.user.fullname}
-				</Heading>
+				<Flex direction={"column"} px="0.5rem" gap={1}>
+					<Heading
+						as="h2"
+						fontSize="1.5rem"
+						fontWeight="bold"
+						color="#033e5c"
+						ml="10px"
+					>
+						{patientInfo?.user.fullname}
+						<AlertDialogDischarge idPatient={patientInfo?.nationalId} />
+					</Heading>
+				</Flex>
 			</Flex>
 			<hr
 				style={{
@@ -175,23 +161,18 @@ function MedicalFilePatient() {
 				}}
 			/>
 			<Box padding={"0 1rem"}>
-				<PersonalData
-					patientInfo={patientInfo}
-					medicalFileDate={medicalFile?.date}
+				{patientInfo && <PersonalData patientInfo={patientInfo} />}
+				<ModalBandageChange
+					isOpen={isOpen}
+					onClose={handleCloseModal}
+					idNurse={nurse?.nationalId}
+					idPatient={patientInfo?.nationalId}
 				/>
-				{/* TODO: xd */}
-				{/* <AlertDialogDischarge idPatient={patientInfo?.nationalId} />
-					<ModalBandageChange
-						isOpen={isOpen}
-						onClose={handleCloseModal}
-						idNurse={nurse?.nationalId}
-						idPatient={patientInfo?.nationalId}
-					/>
-					<ModalMedicine
-						isOpen={isOpenM}
-						onClose={handleCloseModalM}
-						idMedicalFile={medicalFile?.id}
-					/> */}
+				<ModalMedicine
+					isOpen={isOpenM}
+					onClose={handleCloseModalM}
+					idMedicalFile={patientInfo?.MedicalFile[0].id}
+				/>
 				<Heading
 					as="h2"
 					color="#033e5c"
@@ -208,7 +189,9 @@ function MedicalFilePatient() {
 						boxShadow: "0rem 0.25rem 0.5rem #033e5c65",
 					}}
 				/>
-				<MedicalFileBox />
+				{patientInfo?.MedicalFile.map((medFile) => (
+					<MedicalFileBox medicalFileShort={medFile} key={medFile.id} />
+				))}
 			</Box>
 		</Box>
 	);
