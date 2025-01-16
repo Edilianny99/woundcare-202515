@@ -92,7 +92,7 @@ export class WoundEvolutionService {
     let count = 0;
 
     cuestionario.forEach((c) => {
-      if (c.answer === 'yes' && c.key !== 'has-clean-bandages-on') {
+      if (c.answer === 'true' && c.key !== 'has-clean-bandages-on') {
         count++;
       }
     });
@@ -108,7 +108,7 @@ export class WoundEvolutionService {
       (q) => q.key === 'has-clean-bandages-on',
     );
 
-    if (bandageChangeQuestion?.answer === 'no') {
+    if (bandageChangeQuestion?.answer === 'false') {
       const medicalFile = await this.prismaService.medicalFile.findUnique({
         where: { id: medicalFileId },
         include: { patient: { include: { user: true } } },

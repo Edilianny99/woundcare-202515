@@ -88,6 +88,7 @@ export function WoundEvolutionAccordion({ woundEvolution }: Props) {
 															question.key as keyof typeof QuestionaireKeys
 														]
 													}
+													:
 												</Text>
 												<Text marginLeft={"0.25rem"}>{question.answer}</Text>
 											</Flex>
