@@ -2,18 +2,7 @@
 import Arrow from "@/components/Arrow";
 import Loader from "@/components/Loader";
 import { fetchAPIPDF } from "@/utils/api";
-import {
-	Accordion,
-	AccordionButton,
-	AccordionIcon,
-	AccordionItem,
-	AccordionPanel,
-	Box,
-	Button,
-	Flex,
-	Heading,
-	Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -35,7 +24,7 @@ function MedFile() {
 	const [medicalFile, setMedicalFile] = useState<CompleteMedicalFile>();
 	const [patientInfo, setPatientInfo] = useState<ThePatientInfo>();
 
-	const downloadPdf = async (medicalFileId: number) => {
+	const downloadPdf = async (medicalFileId: string) => {
 		try {
 			setIsLoading(true);
 			const response = await fetchAPIPDF<BlobPart>(
@@ -141,35 +130,37 @@ function MedFile() {
 					>
 						{patientInfo?.user.fullname}
 					</Heading>
-					<Button
-						borderRadius="10.25rem"
-						color="white"
-						bg={"#419ebd"}
-						fontSize={"14px"}
-						height={"2.25rem"}
-						width={"fit-content"}
-						boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-						onClick={() => downloadPdf(1)}
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="20"
-							height="20"
-							viewBox="0 0 24 24"
+					{id && (
+						<Button
+							borderRadius="10.25rem"
+							color="white"
+							bg={"#419ebd"}
+							fontSize={"14px"}
+							height={"2.25rem"}
+							width={"fit-content"}
+							boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+							onClick={() => downloadPdf(id)}
 						>
-							<path
-								fill="#ffffff"
-								fill-rule="evenodd"
-								d="M5 16.25a.75.75 0 0 1 .75.75v2c0 .138.112.25.25.25h12a.25.25 0 0 0 .25-.25v-2a.75.75 0 0 1 1.5 0v2A1.75 1.75 0 0 1 18 20.75H6A1.75 1.75 0 0 1 4.25 19v-2a.75.75 0 0 1 .75-.75"
-								clip-rule="evenodd"
-							/>
-							<path
-								fill="#ffffff"
-								d="M10.738 3.75a.99.99 0 0 0-.988.906a37 37 0 0 0-.082 5.27q-.37.02-.74.047l-1.49.109a.76.76 0 0 0-.585 1.167a15.6 15.6 0 0 0 4.032 4.258l.597.429a.89.89 0 0 0 1.036 0l.597-.429a15.6 15.6 0 0 0 4.032-4.258a.76.76 0 0 0-.585-1.167l-1.49-.109a42 42 0 0 0-.74-.047a37 37 0 0 0-.081-5.27a.99.99 0 0 0-.989-.906z"
-							/>
-						</svg>
-						Descargar Historia
-					</Button>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+							>
+								<path
+									fill="#ffffff"
+									fill-rule="evenodd"
+									d="M5 16.25a.75.75 0 0 1 .75.75v2c0 .138.112.25.25.25h12a.25.25 0 0 0 .25-.25v-2a.75.75 0 0 1 1.5 0v2A1.75 1.75 0 0 1 18 20.75H6A1.75 1.75 0 0 1 4.25 19v-2a.75.75 0 0 1 .75-.75"
+									clip-rule="evenodd"
+								/>
+								<path
+									fill="#ffffff"
+									d="M10.738 3.75a.99.99 0 0 0-.988.906a37 37 0 0 0-.082 5.27q-.37.02-.74.047l-1.49.109a.76.76 0 0 0-.585 1.167a15.6 15.6 0 0 0 4.032 4.258l.597.429a.89.89 0 0 0 1.036 0l.597-.429a15.6 15.6 0 0 0 4.032-4.258a.76.76 0 0 0-.585-1.167l-1.49-.109a42 42 0 0 0-.74-.047a37 37 0 0 0-.081-5.27a.99.99 0 0 0-.989-.906z"
+								/>
+							</svg>
+							Descargar Historia
+						</Button>
+					)}
 				</Flex>
 			</Flex>
 			<Box padding={"0 1rem"}>
