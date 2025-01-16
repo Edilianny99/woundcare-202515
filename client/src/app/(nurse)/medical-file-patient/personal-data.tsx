@@ -36,6 +36,7 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 				fontWeight={"bold"}
 				fontSize={"1rem"}
 				color={"#3B3B3B"}
+				marginTop={"0.75rem"}
 				marginBottom={"0.5rem"}
 			>
 				Datos Personales
@@ -65,6 +66,18 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 					</Text>
 				</Flex>
 				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
+					<Text fontWeight={"bold"}>Tipo de Sangre:</Text>
+					<Text marginLeft={"0.25rem"}>{patientInfo?.bloodType}</Text>
+				</Flex>
+				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
+					<Text fontWeight={"bold"}>Altura:</Text>
+					<Text marginLeft={"0.25rem"}>{patientInfo?.height}</Text>
+				</Flex>
+				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
+					<Text fontWeight={"bold"}>Peso:</Text>
+					<Text marginLeft={"0.25rem"}>{patientInfo?.weight}</Text>
+				</Flex>
+				<Flex direction={"row"} marginBottom={"0.25rem"} fontSize={"0.75rem"}>
 					<Text fontWeight={"bold"}>Dirección:</Text>
 					<Text marginLeft={"0.25rem"}>{patientInfo?.address}</Text>
 				</Flex>
@@ -85,6 +98,7 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 				style={{
 					borderTop: "2px #419ebd solid",
 					margin: "1rem 0",
+					boxShadow: "0rem 0.25rem 0.5rem #033e5c65",
 				}}
 			/>
 			<Text
@@ -114,6 +128,7 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 				style={{
 					borderTop: "2px #419ebd solid",
 					margin: "1rem 0",
+					boxShadow: "0rem 0.25rem 0.5rem #033e5c65",
 				}}
 			/>
 			<Text
@@ -125,9 +140,9 @@ export function PersonalData({ patientInfo, medicalFileDate }: Props) {
 				Enfermedades Existentes
 			</Text>
 			<Box padding={"0 0.5rem"}>
-				{patientInfo?.allergies ? (
-					patientInfo.allergies.length > 0 ? (
-						patientInfo.allergies.map((record, index) => (
+				{patientInfo?.medicalRecords ? (
+					patientInfo?.medicalRecords.length > 0 ? (
+						patientInfo?.medicalRecords.map((record, index) => (
 							<li key={index}>{record}</li>
 						))
 					) : (
