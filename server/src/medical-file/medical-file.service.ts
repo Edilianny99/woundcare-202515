@@ -62,7 +62,7 @@ export class MedicalFileService {
       );
     }
 
-    const [medicalFile, _] = await this.prismaService.$transaction([
+    const [medicalFile] = await this.prismaService.$transaction([
       this.prismaService.medicalFile.create({
         data: {
           patientId: createMedicalFileDto.patientId,
@@ -116,7 +116,7 @@ export class MedicalFileService {
         id: id,
       },
       include: {
-        WoundEvolution: true,
+        WoundEvolution: { orderBy: { date: 'desc' } },
       },
     });
   }
@@ -273,12 +273,10 @@ export class MedicalFileService {
         patient: {
           include: { user: true },
         },
-        WoundEvolution: true,
+        WoundEvolution: { orderBy: { date: 'desc' } },
         nurse: { include: { user: true } },
       },
     });
-
-    console.log(medicalFile);
 
     if (!medicalFile) {
       throw new HttpException(

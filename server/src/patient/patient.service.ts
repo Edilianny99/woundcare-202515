@@ -15,7 +15,7 @@ import { PatientDto } from './dto/patient.dto';
 
 @Injectable()
 export class PatientService {
-  constructor(private readonly prismaService: PrismaService) { }
+  constructor(private readonly prismaService: PrismaService) {}
 
   async create(createPatientDto: CreatePatientDto) {
     try {
@@ -227,6 +227,10 @@ export class PatientService {
           select: {
             fullname: true,
           },
+        },
+        MedicalFile: {
+          select: { id: true, date: true, dischargeDate: true },
+          orderBy: { date: 'desc' },
         },
       },
     });
