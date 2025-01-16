@@ -11,7 +11,7 @@ import {
   HttpStatus,
   UseGuards,
   NotFoundException,
-  Res
+  Res,
 } from '@nestjs/common';
 import { Response } from 'express';
 import { MedicalFileService } from './medical-file.service';
@@ -28,7 +28,7 @@ import { Role } from '@prisma/client';
 @UseGuards(AuthGuard, RolesGuard)
 @Controller('medical-file')
 export class MedicalFileController {
-  constructor(private readonly medicalFileService: MedicalFileService) { }
+  constructor(private readonly medicalFileService: MedicalFileService) {}
 
   @Post()
   @Roles(Role.ADMIN, Role.NURSE)
@@ -115,7 +115,7 @@ export class MedicalFileController {
       'Content-Length': buffer.length,
       'Cache-Control': 'no-cache, no-store, must-revalidate',
       Pragma: 'no-cache',
-      format: 'A4',       
+      format: 'A4',
       displayHeaderFooter: true,
     });
     res.end(buffer);

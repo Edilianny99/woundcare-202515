@@ -13,7 +13,7 @@ import { QuestionaireAnswer } from 'src/wound-evolution/wound-evolution-question
 
 @Injectable()
 export class MedicalFileService {
-  constructor(private readonly prismaService: PrismaService) { }
+  constructor(private readonly prismaService: PrismaService) {}
   async create(createMedicalFileDto: CreateMedicalFileDto) {
     const patient = await this.prismaService.patient.findUnique({
       select: {
@@ -114,6 +114,9 @@ export class MedicalFileService {
     return await this.prismaService.medicalFile.findUnique({
       where: {
         id: id,
+      },
+      include: {
+        WoundEvolution: true,
       },
     });
   }
@@ -268,7 +271,7 @@ export class MedicalFileService {
       },
       include: {
         patient: {
-          include: { user: true }
+          include: { user: true },
         },
         WoundEvolution: true,
         nurse: { include: { user: true } },
@@ -296,21 +299,26 @@ export class MedicalFileService {
                 key: QuestionaireKeys[q.key as keyof typeof QuestionaireKeys],
                 answer: q.answer.split(', '),
               };
-            } return {
+            }
+            return {
               key: QuestionaireKeys[q.key as keyof typeof QuestionaireKeys],
               answer: q.answer,
             };
-          })
-        }
-      })
+          }),
+        };
+      }),
     };
 
     Handlebars.registerHelper('eq', (a, b) => {
       return a === b;
     });
 
-    Handlebars.registerHelper('calculateAge', (date) => { return new Date().getFullYear() - new Date(date).getFullYear(); });
-    Handlebars.registerHelper('formatDate', (date) => { return new Date(date).toLocaleDateString(); });
+    Handlebars.registerHelper('calculateAge', (date) => {
+      return new Date().getFullYear() - new Date(date).getFullYear();
+    });
+    Handlebars.registerHelper('formatDate', (date) => {
+      return new Date(date).toLocaleDateString();
+    });
 
     const htmlPath = path.resolve('./src/medical-file/', 'pdf.html');
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
@@ -323,9 +331,11 @@ export class MedicalFileService {
     const page = await browser.newPage();
     await page.setContent(filledHtml);
 
-    const pdfBuffer = Buffer.from(await page.pdf({
-      format: 'A4'
-    }));
+    const pdfBuffer = Buffer.from(
+      await page.pdf({
+        format: 'A4',
+      }),
+    );
 
     await browser.close();
 
