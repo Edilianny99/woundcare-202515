@@ -88,10 +88,7 @@ export function MoreDetailsForm({
 								width: "7rem",
 								aspectRatio: "1/1",
 								cursor: "pointer",
-								border:
-									woundAspect === item.type
-										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #419ebd",
+								border: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								textAlign: "center",
@@ -100,7 +97,7 @@ export function MoreDetailsForm({
 								justifyContent: "center",
 								color: woundAspect === item.type ? "#fff" : "#000",
 								userSelect: "none",
-								backgroundColor: woundAspect === item.type ? "#7f5ad4" : "#fff",
+								backgroundColor: woundAspect === item.type ? "#419ebd" : "#fff",
 							}}
 							onClick={() => {
 								setWoundAspect(item.type);
@@ -137,10 +134,7 @@ export function MoreDetailsForm({
 								width: "7rem",
 								aspectRatio: "1/1",
 								cursor: "pointer",
-								border:
-									woundExtension === item.type
-										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #419ebd",
+								border: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								textAlign: "center",
@@ -149,7 +143,7 @@ export function MoreDetailsForm({
 								color: woundExtension === item.type ? "#fff" : "#000",
 								userSelect: "none",
 								backgroundColor:
-									woundExtension === item.type ? "#7f5ad4" : "#fff",
+									woundExtension === item.type ? "#419ebd" : "#fff",
 							}}
 							onClick={() => {
 								setWoundExtension(item.type);
@@ -186,10 +180,7 @@ export function MoreDetailsForm({
 								width: "7rem",
 								aspectRatio: "1/1",
 								cursor: "pointer",
-								border:
-									woundDepth === item.type
-										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #419ebd",
+								border: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								textAlign: "center",
@@ -198,7 +189,7 @@ export function MoreDetailsForm({
 								alignItems: "center",
 								color: woundDepth === item.type ? "#fff" : "#000",
 								userSelect: "none",
-								backgroundColor: woundDepth === item.type ? "#7f5ad4" : "#fff",
+								backgroundColor: woundDepth === item.type ? "#419ebd" : "#fff",
 							}}
 							onClick={() => {
 								setWoundDepth(item.type);
@@ -237,10 +228,7 @@ export function MoreDetailsForm({
 							height={105}
 							style={{
 								cursor: "pointer",
-								border:
-									secretionQuality === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #419ebd",
+								border: "0.25rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.25rem",
 								opacity: secretionQuality === item.type ? 1 : 0.6,
@@ -278,10 +266,7 @@ export function MoreDetailsForm({
 								width: "7rem",
 								aspectRatio: "1/1",
 								cursor: "pointer",
-								border:
-									secretionQuantity === item.type
-										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #419ebd",
+								border: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								display: "flex",
@@ -291,7 +276,7 @@ export function MoreDetailsForm({
 								color: secretionQuantity === item.type ? "#fff" : "#000",
 								userSelect: "none",
 								backgroundColor:
-									secretionQuantity === item.type ? "#7f5ad4" : "#fff",
+									secretionQuantity === item.type ? "#419ebd" : "#fff",
 							}}
 							onClick={() => {
 								setSecretionQuantity(item.type);
@@ -330,10 +315,7 @@ export function MoreDetailsForm({
 							height={105}
 							style={{
 								cursor: "pointer",
-								border:
-									necroticTissue === item.type
-										? "0.25rem solid #7f5ad4"
-										: "0.25rem solid #419ebd",
+								border: "0.25rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.25rem",
 								opacity: necroticTissue === item.type ? 1 : 0.6,
@@ -371,10 +353,7 @@ export function MoreDetailsForm({
 								width: "7rem",
 								aspectRatio: "1/1",
 								cursor: "pointer",
-								border:
-									granulationTissue === item.type
-										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #419ebd",
+								border: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								display: "flex",
@@ -384,7 +363,7 @@ export function MoreDetailsForm({
 								color: granulationTissue === item.type ? "#fff" : "#000",
 								userSelect: "none",
 								backgroundColor:
-									granulationTissue === item.type ? "#7f5ad4" : "#fff",
+									granulationTissue === item.type ? "#419ebd" : "#fff",
 							}}
 							onClick={() => {
 								setGranulationTissue(item.type);
@@ -421,10 +400,7 @@ export function MoreDetailsForm({
 								width: "7rem",
 								aspectRatio: "1/1",
 								cursor: "pointer",
-								border:
-									edemaLevel === item.type
-										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #419ebd",
+								border: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								display: "flex",
@@ -433,7 +409,7 @@ export function MoreDetailsForm({
 								textAlign: "center",
 								color: edemaLevel === item.type ? "#fff" : "#000",
 								userSelect: "none",
-								backgroundColor: edemaLevel === item.type ? "#7f5ad4" : "#fff",
+								backgroundColor: edemaLevel === item.type ? "#419ebd" : "#fff",
 							}}
 							onClick={() => {
 								setEdemaLevel(item.type);
@@ -470,10 +446,7 @@ export function MoreDetailsForm({
 								width: "7rem",
 								aspectRatio: "1/1",
 								cursor: "pointer",
-								border:
-									surroundingSkin === item.type
-										? "0.1rem solid #7f5ad4"
-										: "0.1rem solid #419ebd",
+								border: "0.1rem solid #419ebd",
 								borderRadius: "1rem",
 								padding: "0.5rem",
 								display: "flex",
@@ -483,7 +456,7 @@ export function MoreDetailsForm({
 								color: surroundingSkin === item.type ? "#fff" : "#000",
 								userSelect: "none",
 								backgroundColor:
-									surroundingSkin === item.type ? "#7f5ad4" : "#fff",
+									surroundingSkin === item.type ? "#419ebd" : "#fff",
 							}}
 							onClick={() => {
 								setSurrodingSkin(item.type);

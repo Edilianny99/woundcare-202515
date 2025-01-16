@@ -343,10 +343,10 @@ function DailyCares() {
 							flexDirection="column"
 							onChange={setSwellingRedness}
 						>
-							<Radio value="true" size="lg" colorScheme="purple">
+							<Radio value="true" size="lg" colorScheme="blue">
 								Si
 							</Radio>
-							<Radio value="false" size="lg" colorScheme="purple">
+							<Radio value="false" size="lg" colorScheme="blue">
 								No
 							</Radio>
 						</RadioGroup>
@@ -382,10 +382,10 @@ function DailyCares() {
 							flexDirection="column"
 							onChange={setHasFever}
 						>
-							<Radio value="true" size="lg" colorScheme="purple">
+							<Radio value="true" size="lg" colorScheme="blue">
 								Si
 							</Radio>
-							<Radio value="false" size="lg" colorScheme="purple">
+							<Radio value="false" size="lg" colorScheme="blue">
 								No
 							</Radio>
 						</RadioGroup>
@@ -409,10 +409,10 @@ function DailyCares() {
 							flexDirection="column"
 							onChange={setChillsShaking}
 						>
-							<Radio value="true" size="lg" colorScheme="purple">
+							<Radio value="true" size="lg" colorScheme="blue">
 								Si
 							</Radio>
-							<Radio value="false" size="lg" colorScheme="purple">
+							<Radio value="false" size="lg" colorScheme="blue">
 								No
 							</Radio>
 						</RadioGroup>
@@ -448,10 +448,10 @@ function DailyCares() {
 							flexDirection="column"
 							onChange={setHasSecretion}
 						>
-							<Radio value="true" size="lg" colorScheme="purple">
+							<Radio value="true" size="lg" colorScheme="blue">
 								Si
 							</Radio>
-							<Radio value="false" size="lg" colorScheme="purple">
+							<Radio value="false" size="lg" colorScheme="blue">
 								No
 							</Radio>
 						</RadioGroup>
@@ -484,10 +484,7 @@ function DailyCares() {
 									height={105}
 									style={{
 										cursor: "pointer",
-										border:
-											secretionType === item.type
-												? "0.25rem solid #7f5ad4"
-												: "0.25rem solid #419ebd",
+										border: "0.25rem solid #419ebd",
 										borderRadius: "1rem",
 										padding: "0.25rem",
 										opacity: secretionType === item.type ? 1 : 0.6,
@@ -501,7 +498,6 @@ function DailyCares() {
 					</Box>
 				)}
 				<Box w="100%" h="2px" bg="#419ebd" />
-				{/* TODO: Imagen de Vendaje */}
 				{/* NOTE: ¿El vendaje está en su lugar y limpio? */}
 				<Flex
 					w="100%"
@@ -519,10 +515,10 @@ function DailyCares() {
 							flexDirection="column"
 							onChange={setHasCleanBandagesOn}
 						>
-							<Radio value="true" size="lg" colorScheme="purple">
+							<Radio value="true" size="lg" colorScheme="blue">
 								Si
 							</Radio>
-							<Radio value="false" size="lg" colorScheme="purple">
+							<Radio value="false" size="lg" colorScheme="blue">
 								No
 							</Radio>
 						</RadioGroup>

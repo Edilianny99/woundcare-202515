@@ -61,7 +61,7 @@ function NotificationsPage() {
 
 	useEffect(() => {
 		if (inView || page === 1) fetchUserNotifications();
-	}, [inView]);
+	}, [fetchUserNotifications, inView, page]);
 	return (
 		<Box as="main" flex={1}>
 			<Arrow />
@@ -99,7 +99,7 @@ function NotificationsPage() {
 					flexDirection="column"
 					alignItems="center"
 					gap={2}
-					backgroundColor="rgba(97, 48, 116, 0.5)"
+					backgroundColor="#419ebd85"
 					borderRadius={10}
 					maxHeight="65vh"
 					overflowY="scroll"
